@@ -8,11 +8,11 @@ public partial class WalkingState : State
 
     public override async void Ready()
     {
-       
+        _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
     }
     public override void Enter()
     {
-         
+         GD.Print("Entered Walking State");
      
     }
 
@@ -21,11 +21,11 @@ public partial class WalkingState : State
        
 		if (!_player.IsOnFloor())
 		{
-			
+			stateMachine.TransitionTo("FallingState");
 		}
-		else if(_player.IsOnFloor())
+		else if(_player.IsOnFloor()&&_player.Velocity.X == 0)
 		{
-           
+           stateMachine.TransitionTo("IdleState");
 		}
 		
     }
@@ -37,11 +37,11 @@ public partial class WalkingState : State
         float direction = Input.GetAxis("move_left", "move_right");
         if (direction != 0.0f)
         {
-           // velocity.X = direction * _player.GetSpeed();
+           velocity.X = direction * _player.GetSpeed();
         }
         else
 		{
-			//velocity.X = Mathf.MoveToward(_player.Velocity.X, 0, _player.GetSpeed());
+			velocity.X = Mathf.MoveToward(_player.Velocity.X, 0, _player.GetSpeed());
 		}
 
         _player.Velocity = velocity;
@@ -51,7 +51,7 @@ public partial class WalkingState : State
     public override void HandleInput(InputEvent @event)
     {
 		if (@event.IsActionPressed("jump"))
-			stateMachine.TransitionTo("JumpingMovementState");
+			stateMachine.TransitionTo("JumpingState");
     }
 
 

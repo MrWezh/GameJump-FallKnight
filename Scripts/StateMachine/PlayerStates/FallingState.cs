@@ -7,11 +7,13 @@ public partial class FallingState : State
 
     public override async void Ready()
     {
-    }
+                _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
 
+    }
 
     public override void Enter()
     {
+        GD.Print("Entered Falling State");
         //_player.SetAnimation("fall");
     }
 
@@ -19,29 +21,17 @@ public partial class FallingState : State
     {
 		if (_player.IsOnFloor())
 		{
-			if (_player.Velocity.X == 0)
-				stateMachine.TransitionTo("IdleMovementState");
-			else
-				stateMachine.TransitionTo("RunningMovementState");
-
+			if (_player.IsOnFloor())
+				stateMachine.TransitionTo("IdleState");
         }
     
     }
-
     public override void UpdatePhysics(double delta)
     {
-
         Vector2 velocity = _player.Velocity;
-        float direction = Input.GetAxis("move_left", "move_right");
-
         if (!_player.IsOnFloor())
         {
             velocity += _player.GetGravity() * (float)delta;
-
-            if (direction!=0.0f)
-            {
-                //velocity.X = direction * _player.GetSpeed();
-            }
 
         }
         _player.Velocity = velocity;

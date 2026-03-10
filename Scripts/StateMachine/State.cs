@@ -4,7 +4,8 @@ using System;
 public partial class State : Node
 {
     public StateMachine stateMachine;
-
+ 
+    
     public virtual void Enter()
     {
         

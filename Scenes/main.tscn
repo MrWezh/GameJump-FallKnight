@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bs17jo4vw2vpp"]
 
-[ext_resource type="Texture2D" uid="uid://cis6sdylylv2k" path="res://Assets/e4fba522-e852-4072-9fd1-e8497d533258.png" id="1_8gbba"]
+[ext_resource type="Texture2D" uid="uid://cis6sdylylv2k" path="res://Assets/FondoTMP.png" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://dtx4i2srrljye" path="res://Scripts/GameControler.cs" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://b2etaji7beikv" path="res://Scenes/player.tscn" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://buxc2xvoq6p8k" path="res://Scenes/PlataformTMP.tscn" id="3_kry3j"]
 
@@ -11,6 +12,7 @@ size = Vector2(1194, 43)
 size = Vector2(38.5, 613)
 
 [node name="Main" type="Node" unique_id=578939692]
+script = ExtResource("1_jjvhh")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2090295333]
 anchors_preset = 15

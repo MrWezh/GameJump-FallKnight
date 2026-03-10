@@ -7,19 +7,18 @@ public partial class JumpingState : State
 
     public override async void Ready()
     {
-
-
+        _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
     }
     public override void Enter()
     {
-
+        GD.Print("Entered Jumping State");
     }
 
     public override void Update(double delta)
     {
         if (!_player.IsOnFloor() && _player.Velocity.Y >= 0)
         {
-                stateMachine.TransitionTo("FallingMovementState");
+                stateMachine.TransitionTo("FallingState");
         }
     }
 
@@ -27,18 +26,10 @@ public partial class JumpingState : State
     {
         
         Godot.Vector2 velocity = _player.Velocity;
-        float direction = Input.GetAxis("move_left", "move_right");
 
-        if (!_player.IsOnFloor())
-        {
+        if (_player.IsOnFloor())
+            velocity.Y += _player.GetJumpVelocity();
             velocity += _player.GetGravity() * (float)delta;
-
-             if (direction!=0.0f)
-            {
-                //velocity.X = direction * _player.GetSpeed();
-            }
-
-        }
 
         _player.Velocity = velocity;
         _player.MoveAndSlide();
