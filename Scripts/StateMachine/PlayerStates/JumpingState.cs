@@ -4,8 +4,8 @@ public partial class JumpingState : State
 {
     private Player _player;
     private const float MinimJumpVelocity = -100.0f;
-    private const float MaxJumpVelocity = -1200.0f;
-    private const float ChargeRate = 600.0f;
+    private const float MaxJumpVelocity = -800.0f;
+    private const float ChargeRate = 1000.0f;
     public override async void Ready()
     {
         _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
@@ -17,7 +17,7 @@ public partial class JumpingState : State
 
     public override void Update(double delta)
     {
-               //Cuando el jugador presiona el botón de salto, comenzamos a cargar el salto
+        //Cuando el jugador presiona el botón de salto, comenzamos a cargar el salto
         //Cambiando el paramentro _charging a true, lo que indica que el jugador está en proceso de cargar el salto
 
         if (!_player.IsOnFloor() && _player.Velocity.Y > 0)
@@ -45,7 +45,7 @@ public partial class JumpingState : State
         //Cuando el jugador suelta el botón de salto, se detiene la carga y se transiciona al estado de salto
         // Si se alcanza el salto máximo mientras se carga, se lanza el salto automáticamente *(pediente de implementar)
         if (_player.GetCharging() && Input.IsActionJustReleased("jump") 
-        /*||(_player.GetJumpVelocity() == MaxJumpVelocity && _charging)*/) 
+        ||(_player.GetJumpVelocity() == MaxJumpVelocity && _player.GetCharging())) 
         {
         
         float direction = Input.GetAxis("move_left", "move_right");

@@ -5,7 +5,8 @@ public partial class Player : CharacterBody2D
 {
 	private const float Speed = 500.0f;
 	private float JumpVelocity = -100.0f;
-	private const float weight = 500f;
+	private const float weight = 50f;
+
 
 	 private bool _charging = false;
 
@@ -55,4 +56,6 @@ public partial class Player : CharacterBody2D
 			_animatedSprite = GetNode<AnimatedSprite2D>("Sprite");
 		_animatedSprite.Play(animationName);
 	}
+
+
 }

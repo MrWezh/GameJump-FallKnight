@@ -41,4 +41,4 @@ position = Vector2(1177.25, 305)
 shape = SubResource("RectangleShape2D_6bp64")
 
 [node name="RigidBody2D" parent="." unique_id=2043457842 instance=ExtResource("3_kry3j")]
-position = Vector2(561, 294)
+position = Vector2(950, 195)

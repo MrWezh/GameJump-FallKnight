@@ -20,16 +20,18 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkybt"]
-size = Vector2(129, 128)
+size = Vector2(60, 62)
 
 [node name="Player" type="CharacterBody2D" unique_id=657798253]
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
+position = Vector2(-33, 33.5)
+scale = Vector2(0.484375, 0.4765625)
 sprite_frames = SubResource("SpriteFrames_vgqql")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
-position = Vector2(1.5, 2)
+position = Vector2(-33, 35)
 shape = SubResource("RectangleShape2D_fkybt")
 
 [node name="StateMachine" type="Node" parent="." unique_id=579789774]
