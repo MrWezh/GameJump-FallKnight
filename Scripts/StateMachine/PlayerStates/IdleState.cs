@@ -5,6 +5,7 @@ public partial class IdleState : State
 {
     private Player _player;
 
+
     public override async void Ready()
     {
         _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
@@ -14,25 +15,17 @@ public partial class IdleState : State
     {
         GD.Print("Entered Idle State");
          //_player.SetAnimation("idle");
-
     }
-
     public override void Update(double delta)
     {
+ 
 
-      if (!_player.IsOnFloor())
+        if (!_player.IsOnFloor() && _player.Velocity.Y > 0)
         {
-            Vector2 velocity = _player.Velocity;
-            velocity += _player.GetGravity() * (float)delta;
-            if (_player.Velocity.Y < 0)
-                stateMachine.TransitionTo("JumpingState");
-            else{
-                stateMachine.TransitionTo("FallingState");
-            }
+            stateMachine.TransitionTo("FallingState");
         }
 
-      float direction = Input.GetAxis("move_left", "move_right");
-
+        float direction = Input.GetAxis("move_left", "move_right");
 
         if (direction != 0.0f)
         {
@@ -43,7 +36,12 @@ public partial class IdleState : State
     {
         if (@event.IsActionPressed("move_left") || @event.IsActionPressed("move_right"))
             stateMachine.TransitionTo("RunningState");
-        if (@event.IsActionPressed("jump"))
+        // Jump handled by charge logic in Update
+        if(@event.IsActionPressed("jump"))
+        {
+            _player.SetCharging(true);
             stateMachine.TransitionTo("JumpingState");
+
+        }
     }
 }

@@ -5,10 +5,12 @@ using System;
 public partial class WalkingState : State
 {
     private Player _player;
+    Vector2 velocity;
 
     public override async void Ready()
     {
         _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
+         velocity = _player.Velocity;
     }
     public override void Enter()
     {
@@ -32,7 +34,7 @@ public partial class WalkingState : State
 
     public override void UpdatePhysics(double delta)
     {
-        Vector2 velocity = _player.Velocity;
+        
         
         float direction = Input.GetAxis("move_left", "move_right");
         if (direction != 0.0f)
@@ -50,8 +52,12 @@ public partial class WalkingState : State
 
     public override void HandleInput(InputEvent @event)
     {
-		if (@event.IsActionPressed("jump"))
-			stateMachine.TransitionTo("JumpingState");
+		 if(@event.IsActionPressed("jump"))
+        {
+            _player.Velocity = new Vector2(0, 0);
+            _player.SetCharging(true);
+            stateMachine.TransitionTo("JumpingState");
+        }
     }
 
 
