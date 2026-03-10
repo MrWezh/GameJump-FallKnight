@@ -26,3 +26,13 @@ sprite_frames = SubResource("SpriteFrames_vgqql")
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
 position = Vector2(1.5, 2)
 shape = SubResource("RectangleShape2D_fkybt")
+
+[node name="StateMachine" type="Node" parent="." unique_id=579789774]
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1273132968]
+
+[node name="WalkingState" type="Node" parent="StateMachine" unique_id=1459721450]
+
+[node name="JumpingState" type="Node" parent="StateMachine" unique_id=1580685336]
+
+[node name="FallingState" type="Node" parent="StateMachine" unique_id=630636548]
