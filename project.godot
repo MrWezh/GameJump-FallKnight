@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GameJump_FallKnight"
+run/main_scene="uid://bs17jo4vw2vpp"
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+config/icon="res://Assets/icon.svg"
+
+[dotnet]
+
+project/assembly_name="GameJump_FallKnight"
+
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="Player"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"

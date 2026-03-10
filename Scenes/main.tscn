@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bs17jo4vw2vpp"]
+
+[ext_resource type="Texture2D" uid="uid://cis6sdylylv2k" path="res://Assets/e4fba522-e852-4072-9fd1-e8497d533258.png" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://b2etaji7beikv" path="res://Scenes/player.tscn" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://buxc2xvoq6p8k" path="res://Scenes/PlataformTMP.tscn" id="3_kry3j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21xkr"]
+size = Vector2(1194, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp64"]
+size = Vector2(38.5, 613)
+
+[node name="Main" type="Node" unique_id=578939692]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2090295333]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8gbba")
+
+[node name="Player" parent="." unique_id=657798253 instance=ExtResource("2_jjvhh")]
+position = Vector2(586, 519)
+collision_layer = 2
+
+[node name="TerrainTMP" type="StaticBody2D" parent="." unique_id=749058781]
+
+[node name="Float" type="CollisionShape2D" parent="TerrainTMP" unique_id=792605644]
+position = Vector2(575, 629.5)
+shape = SubResource("RectangleShape2D_21xkr")
+
+[node name="Pared" type="CollisionShape2D" parent="TerrainTMP" unique_id=1256118287]
+position = Vector2(-19, 297)
+shape = SubResource("RectangleShape2D_6bp64")
+
+[node name="Pared2" type="CollisionShape2D" parent="TerrainTMP" unique_id=765122135]
+position = Vector2(1177.25, 305)
+shape = SubResource("RectangleShape2D_6bp64")
+
+[node name="RigidBody2D" parent="." unique_id=2043457842 instance=ExtResource("3_kry3j")]
+position = Vector2(561, 294)

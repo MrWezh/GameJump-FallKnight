@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameJump_FallKnight", "GameJump_FallKnight.csproj", "{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{3E75F61C-D646-41A8-9D12-2E6A3C7C7DEC}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
