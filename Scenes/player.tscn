@@ -23,6 +23,7 @@ animations = [{
 size = Vector2(60, 62)
 
 [node name="Player" type="CharacterBody2D" unique_id=657798253]
+input_pickable = true
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
@@ -48,3 +49,5 @@ script = ExtResource("6_tx1dd")
 
 [node name="FallingState" type="Node" parent="StateMachine" unique_id=630636548]
 script = ExtResource("7_gymyn")
+
+[connection signal="input_event" from="." to="." method="onCollisionInputEvent"]

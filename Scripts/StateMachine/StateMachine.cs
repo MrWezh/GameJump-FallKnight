@@ -2,8 +2,10 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class StateMachine : Node
+namespace FallKnight.Scripts.StateMachines
 {
+    public partial class StateMachine : Node
+    {
     [Export] public NodePath initialState;
 
     private Dictionary<string, State> _states;
@@ -69,5 +71,6 @@ public partial class StateMachine : Node
         _current_state.Exit();
         _current_state = _states[key];
         _current_state.Enter();
+    }
     }
 }

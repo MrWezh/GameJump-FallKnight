@@ -1,41 +1,46 @@
 using Godot;
 using System;
+using FallKnight.Scripts.StateMachines;
+using FallKnight.Scripts.PlayerScript;
 
-public partial class FallingState : State
+namespace FallKnight.Scripts.StateMachines.PlayerStates
 {
-    private Player _player;
-
-    public override async void Ready()
+    public partial class FallingState : State
     {
-                _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
+        private Player _player;
 
-    }
-
-    public override void Enter()
-    {
-        GD.Print("Entered Falling State");
-        //_player.SetAnimation("fall");
-    }
-
-    public override void Update(double delta)
-    {
-		if (_player.IsOnFloor())
-		{
-			if (_player.IsOnFloor())
-				stateMachine.TransitionTo("IdleState");
-        }
-    
-    }
-    public override void UpdatePhysics(double delta)
-    {
-        Vector2 velocity = _player.Velocity;
-        if (!_player.IsOnFloor())
+        public override async void Ready()
         {
-            velocity += _player.GetGravity() * (float)delta;
+            _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
 
         }
-        _player.Velocity = velocity;
-		_player.MoveAndSlide();
-    }
 
+        public override void Enter()
+        {
+            //GD.Print("Entered Falling State");
+            //_player.SetAnimation("fall");
+        }
+
+        public override void Update(double delta)
+        {
+            if (_player.IsOnFloor())
+            {
+                if (_player.IsOnFloor())
+                    stateMachine.TransitionTo("IdleState");
+            }
+
+        }
+        public override void UpdatePhysics(double delta)
+        {
+            Vector2 velocity = _player.Velocity;
+            if (!_player.IsOnFloor())
+            {
+                velocity += _player.GetGravity() * (float)delta;
+
+            }
+            _player.Velocity = velocity;
+            _player.MoveAndSlide();
+        }
+
+    }
 }

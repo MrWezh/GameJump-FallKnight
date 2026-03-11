@@ -1,18 +1,23 @@
 using Godot;
+using FallKnight.Scripts.StateMachines;
+using FallKnight.Scripts.PlayerScript;
 
-public partial class JumpingState : State
+
+namespace FallKnight.Scripts.StateMachines.PlayerStates
 {
+    public partial class JumpingState : State
+    {
     private Player _player;
-    private const float MinimJumpVelocity = -100.0f;
-    private const float MaxJumpVelocity = -800.0f;
-    private const float ChargeRate = 1000.0f;
+    
+
     public override async void Ready()
     {
         _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
     }
     public override void Enter()
     {
-        GD.Print("Entered Jumping State");        
+        _player.Velocity = new Vector2(0, 0);
+        //GD.Print("Entered Jumping State");        
     }
 
     public override void Update(double delta)
@@ -33,11 +38,11 @@ public partial class JumpingState : State
          a cargar el salto, hasta un límite máximo definido por MaxChargeJump.*/
         if (_player.GetCharging())
         {
-            GD.Print("Charging Jump...");
+            //GD.Print("Charging Jump...");
             float _jump = _player.GetJumpVelocity();
-            _jump -= (float)(ChargeRate * delta);
-            if (_jump < MaxJumpVelocity)
-                _jump = MaxJumpVelocity;
+            _jump -= (float)(_player.GetChargeRate() * delta);
+            if (_jump < _player.GetMaxJumpVelocity())
+                _jump = _player.GetMaxJumpVelocity();
             _player.SetJumpVelocity(_jump);
         }
 
@@ -45,7 +50,7 @@ public partial class JumpingState : State
         //Cuando el jugador suelta el botón de salto, se detiene la carga y se transiciona al estado de salto
         // Si se alcanza el salto máximo mientras se carga, se lanza el salto automáticamente *(pediente de implementar)
         if (_player.GetCharging() && Input.IsActionJustReleased("jump") 
-        ||(_player.GetJumpVelocity() == MaxJumpVelocity && _player.GetCharging())) 
+        ||(_player.GetJumpVelocity() == _player.GetMaxJumpVelocity() && _player.GetCharging())) 
         {
         
         float direction = Input.GetAxis("move_left", "move_right");
@@ -65,8 +70,9 @@ public partial class JumpingState : State
     }
     public override void Exit()
     {
-        _player.SetJumpVelocity(MinimJumpVelocity); // Resetea la velocidad de salto para el próximo salto
+        _player.SetJumpVelocity(_player.GetMinJumpVelocity()); // Resetea la velocidad de salto para el próximo salto
     }
 
 
+    }
 }

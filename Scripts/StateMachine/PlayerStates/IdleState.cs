@@ -1,8 +1,13 @@
 using Godot;
 using System;
+using FallKnight.Scripts.StateMachines;
+using FallKnight.Scripts.PlayerScript;
 
-public partial class IdleState : State
+
+namespace FallKnight.Scripts.StateMachines.PlayerStates
 {
+    public partial class IdleState : State
+    {
     private Player _player;
 
 
@@ -13,7 +18,7 @@ public partial class IdleState : State
     }
     public override void Enter()
     {
-        GD.Print("Entered Idle State");
+        //GD.Print("Entered Idle State");
          //_player.SetAnimation("idle");
     }
     public override void Update(double delta)
@@ -43,5 +48,6 @@ public partial class IdleState : State
             stateMachine.TransitionTo("JumpingState");
 
         }
+    }
     }
 }

@@ -1,64 +1,69 @@
 using Godot;
 using GodotPlugins.Game;
 using System;
+using FallKnight.Scripts.StateMachines;
+using FallKnight.Scripts.PlayerScript;
 
-public partial class WalkingState : State
+
+namespace FallKnight.Scripts.StateMachines.PlayerStates
 {
-    private Player _player;
-    Vector2 velocity;
-
-    public override async void Ready()
+    public partial class WalkingState : State
     {
-        _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
-         velocity = _player.Velocity;
-    }
-    public override void Enter()
-    {
-         GD.Print("Entered Walking State");
-     
-    }
+        private Player _player;
+        Vector2 velocity;
 
-    public override void Update(double delta)
-	{
-       
-		if (!_player.IsOnFloor())
-		{
-			stateMachine.TransitionTo("FallingState");
-		}
-		else if(_player.IsOnFloor()&&_player.Velocity.X == 0)
-		{
-           stateMachine.TransitionTo("IdleState");
-		}
-		
-    }
-
-    public override void UpdatePhysics(double delta)
-    {
-        
-        
-        float direction = Input.GetAxis("move_left", "move_right");
-        if (direction != 0.0f)
+        public override async void Ready()
         {
-           velocity.X = direction * _player.GetSpeed();
+            _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
+            velocity = _player.Velocity;
         }
-        else
-		{
-			velocity.X = Mathf.MoveToward(_player.Velocity.X, 0, _player.GetSpeed());
-		}
-
-        _player.Velocity = velocity;
-		_player.MoveAndSlide();
-    }
-
-    public override void HandleInput(InputEvent @event)
-    {
-		 if(@event.IsActionPressed("jump"))
+        public override void Enter()
         {
-            _player.Velocity = new Vector2(0, 0);
-            _player.SetCharging(true);
-            stateMachine.TransitionTo("JumpingState");
+            //GD.Print("Entered Walking State");
+
         }
+
+        public override void Update(double delta)
+        {
+
+            if (!_player.IsOnFloor())
+            {
+                stateMachine.TransitionTo("FallingState");
+            }
+            else if(_player.IsOnFloor()&&_player.Velocity.X == 0)
+            {
+                stateMachine.TransitionTo("IdleState");
+            }
+
+        }
+
+        public override void UpdatePhysics(double delta)
+        {
+
+
+            float direction = Input.GetAxis("move_left", "move_right");
+            if (direction != 0.0f)
+            {
+                velocity.X = direction * _player.GetSpeed();
+            }
+            else
+            {
+                velocity.X = Mathf.MoveToward(_player.Velocity.X, 0, _player.GetSpeed());
+            }
+
+            _player.Velocity = velocity;
+            _player.MoveAndSlide();
+        }
+
+        public override void HandleInput(InputEvent @event)
+        {
+            if(@event.IsActionPressed("jump"))
+            {
+                _player.SetCharging(true);
+                stateMachine.TransitionTo("JumpingState");
+            }
+        }
+
+
     }
-
-
 }
