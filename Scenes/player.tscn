@@ -94,7 +94,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
@@ -108,8 +108,8 @@ script = ExtResource("1_cvnsp")
 texture_filter = 1
 scale = Vector2(2.513, 3)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"pre-jump"
-frame_progress = 0.9031062
+animation = &"walk"
+frame_progress = 0.39903456
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
 position = Vector2(-1, 20.5)

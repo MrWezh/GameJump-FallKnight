@@ -19,7 +19,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
     public override void Enter()
     {
         _player.Velocity = Vector2.Zero; 
-        _player.SetHit(false);
+        _player.SetHit();
         //GD.Print("Entered Idle State");
          _player.SetAnimation("idle");
     }
@@ -46,7 +46,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         // Jump handled by charge logic in Update
         if(@event.IsActionPressed("jump"))
         {
-            _player.SetCharging(true);
+            _player.SetCharging();
             stateMachine.TransitionTo("JumpingState");
 
         }

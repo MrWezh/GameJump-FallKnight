@@ -61,7 +61,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
             GD.Print("jump"); 
             GD.Print(_player.GetJumpVelocity());            
              velocity.Y += _player.GetJumpVelocity();
-            _player.SetCharging(false);
+            _player.SetCharging();
         }
         velocity += _player.GetGravity() * (float)delta;
         _player.Velocity = velocity;

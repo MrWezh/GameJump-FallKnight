@@ -59,7 +59,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         {
             if(@event.IsActionPressed("jump"))
             {
-                _player.SetCharging(true);
+                _player.SetCharging();
                 stateMachine.TransitionTo("JumpingState");
             }
         }
