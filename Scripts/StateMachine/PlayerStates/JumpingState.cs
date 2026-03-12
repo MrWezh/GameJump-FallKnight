@@ -16,8 +16,6 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
     }
     public override void Enter()
     {
-        _player.Velocity = new Vector2(0, 0);
-        //GD.Print("Entered Jumping State");        
     }
 
     public override void Update(double delta)
@@ -33,11 +31,13 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
 
     public override void UpdatePhysics(double delta)
     {
-                 /*Mientras el jugador mantiene presionado el botón de salto, se incrementa 
+        /*Mientras el jugador mantiene presionado el botón de salto, se incrementa 
          la velocidad de salto en función del tiempo que ha pasado desde que comenzó 
          a cargar el salto, hasta un límite máximo definido por MaxChargeJump.*/
         if (_player.GetCharging())
         {
+        _player.Velocity = Vector2.Zero;
+        _player.SetAnimation("pre-jump");
             //GD.Print("Charging Jump...");
             float _jump = _player.GetJumpVelocity();
             _jump -= (float)(_player.GetChargeRate() * delta);
@@ -52,7 +52,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         if (_player.GetCharging() && Input.IsActionJustReleased("jump") 
         ||(_player.GetJumpVelocity() == _player.GetMaxJumpVelocity() && _player.GetCharging())) 
         {
-        
+        _player.SetAnimation("jump");
         float direction = Input.GetAxis("move_left", "move_right");
         if (direction != 0.0f)
         {
@@ -65,7 +65,6 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         }
         velocity += _player.GetGravity() * (float)delta;
         _player.Velocity = velocity;
-        _player.MoveAndSlide();
        
     }
     public override void Exit()

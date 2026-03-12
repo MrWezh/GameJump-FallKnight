@@ -19,7 +19,8 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         }
         public override void Enter()
         {
-            //GD.Print("Entered Walking State");
+        _player.SetAnimation("walk");
+            
 
         }
 
@@ -52,7 +53,6 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
             }
 
             _player.Velocity = velocity;
-            _player.MoveAndSlide();
         }
 
         public override void HandleInput(InputEvent @event)

@@ -33,12 +33,16 @@ position = Vector2(575, 629.5)
 shape = SubResource("RectangleShape2D_21xkr")
 
 [node name="Pared" type="CollisionShape2D" parent="TerrainTMP" unique_id=1256118287]
-position = Vector2(-19, 297)
+position = Vector2(2, 297)
 shape = SubResource("RectangleShape2D_6bp64")
 
 [node name="Pared2" type="CollisionShape2D" parent="TerrainTMP" unique_id=765122135]
 position = Vector2(1177.25, 305)
 shape = SubResource("RectangleShape2D_6bp64")
 
+[node name="Float2" type="CollisionShape2D" parent="TerrainTMP" unique_id=244580259]
+position = Vector2(571, -13)
+shape = SubResource("RectangleShape2D_21xkr")
+
 [node name="RigidBody2D" parent="." unique_id=2043457842 instance=ExtResource("3_kry3j")]
-position = Vector2(950, 195)
+position = Vector2(948, 232)

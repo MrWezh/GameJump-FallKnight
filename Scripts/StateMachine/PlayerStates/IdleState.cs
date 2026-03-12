@@ -18,8 +18,10 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
     }
     public override void Enter()
     {
+        _player.Velocity = Vector2.Zero; 
+        _player.SetHit(false);
         //GD.Print("Entered Idle State");
-         //_player.SetAnimation("idle");
+         _player.SetAnimation("idle");
     }
     public override void Update(double delta)
     {

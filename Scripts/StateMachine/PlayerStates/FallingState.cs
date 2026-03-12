@@ -18,7 +18,8 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         public override void Enter()
         {
             //GD.Print("Entered Falling State");
-            //_player.SetAnimation("fall");
+            if(_player.GetHit()) _player.SetAnimation("hit");
+            else _player.SetAnimation("fall");
         }
 
         public override void Update(double delta)
@@ -39,7 +40,6 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
 
             }
             _player.Velocity = velocity;
-            _player.MoveAndSlide();
         }
 
     }
