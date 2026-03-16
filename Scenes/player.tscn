@@ -98,11 +98,23 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
-size = Vector2(66, 61)
+size = Vector2(54, 79)
 
-[node name="Player" type="CharacterBody2D" unique_id=657798253]
+[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_healthBar")]
 input_pickable = true
 script = ExtResource("1_cvnsp")
+_collision = NodePath("Collision")
+_animatedSprite = NodePath("Sprite")
+_healthBar = NodePath("HealthBar")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=316556182]
+texture_filter = 1
+offset_left = -152.0
+offset_top = -110.0
+offset_right = 141.0
+offset_bottom = -83.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+value = 100.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
 texture_filter = 1
@@ -112,7 +124,6 @@ animation = &"walk"
 frame_progress = 0.39903456
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
-position = Vector2(-1, 20.5)
 shape = SubResource("RectangleShape2D_3smsa")
 
 [node name="StateMachine" type="Node" parent="." unique_id=579789774]
@@ -129,5 +140,10 @@ script = ExtResource("6_tx1dd")
 
 [node name="FallingState" type="Node" parent="StateMachine" unique_id=630636548]
 script = ExtResource("7_gymyn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1806114049]
+position = Vector2(0, -100)
+limit_left = 0
+limit_bottom = 648
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]

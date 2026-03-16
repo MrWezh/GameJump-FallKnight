@@ -4,45 +4,75 @@
 [ext_resource type="Script" uid="uid://dtx4i2srrljye" path="res://Scripts/GameControler.cs" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://b2etaji7beikv" path="res://Scenes/player.tscn" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://buxc2xvoq6p8k" path="res://Scenes/PlataformTMP.tscn" id="3_kry3j"]
+[ext_resource type="PackedScene" uid="uid://1escpa8exs4u" path="res://Scenes/game_over.tscn" id="5_kry3j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21xkr"]
-size = Vector2(1194, 43)
+size = Vector2(2562, 65.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bp64"]
-size = Vector2(38.5, 613)
+size = Vector2(106.5, 1392.5)
 
-[node name="Main" type="Node" unique_id=578939692]
+[node name="Main" type="Node" unique_id=578939692 node_paths=PackedStringArray("_gameOverMensage", "_player", "_timer")]
 script = ExtResource("1_jjvhh")
+_gameOverMensage = NodePath("GameOver")
+_player = NodePath("Player")
+_timer = NodePath("GameOver/Timer")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2090295333]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -781.0
+offset_right = 1447.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_8gbba")
 
 [node name="Player" parent="." unique_id=657798253 instance=ExtResource("2_jjvhh")]
-position = Vector2(586, 519)
+position = Vector2(628, 527)
 collision_layer = 2
 
 [node name="TerrainTMP" type="StaticBody2D" parent="." unique_id=749058781]
 
 [node name="Float" type="CollisionShape2D" parent="TerrainTMP" unique_id=792605644]
-position = Vector2(575, 629.5)
+position = Vector2(1276, 614.75)
 shape = SubResource("RectangleShape2D_21xkr")
 
 [node name="Pared" type="CollisionShape2D" parent="TerrainTMP" unique_id=1256118287]
-position = Vector2(2, 297)
+position = Vector2(4, -103)
 shape = SubResource("RectangleShape2D_6bp64")
 
 [node name="Pared2" type="CollisionShape2D" parent="TerrainTMP" unique_id=765122135]
-position = Vector2(1177.25, 305)
+position = Vector2(2593, -102)
 shape = SubResource("RectangleShape2D_6bp64")
 
 [node name="Float2" type="CollisionShape2D" parent="TerrainTMP" unique_id=244580259]
-position = Vector2(571, -13)
+position = Vector2(1283, -812)
 shape = SubResource("RectangleShape2D_21xkr")
 
 [node name="RigidBody2D" parent="." unique_id=2043457842 instance=ExtResource("3_kry3j")]
-position = Vector2(948, 232)
+light_mask = 2
+visibility_layer = 2
+position = Vector2(2303, 449)
+
+[node name="RigidBody2D2" parent="." unique_id=1927696613 instance=ExtResource("3_kry3j")]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(1610, 185)
+
+[node name="RigidBody2D3" parent="." unique_id=667710455 instance=ExtResource("3_kry3j")]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(915, 20)
+
+[node name="GameOver" parent="." unique_id=646237811 instance=ExtResource("5_kry3j")]
+visible = false
+
+[node name="Timer" type="Timer" parent="GameOver" unique_id=2012698115]
+process_mode = 2
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="GameOver/Timer" to="." method="onTimerTimeout"]

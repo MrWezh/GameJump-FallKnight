@@ -9,6 +9,8 @@ namespace FallKnight.Scripts.PlayerScript
 
 	public partial class Player : CharacterBody2D
 	{
+
+		private int _health = 100;
 		private const float Speed = 150.0f;
 		private float JumpVelocity = -50.0f;
 		private const float weight = 50f;
@@ -17,11 +19,14 @@ namespace FallKnight.Scripts.PlayerScript
 		private const float ChargeRate = 1000.0f;
 		private bool _hit = false;
 
-		private CollisionShape2D _collision;
-
+		//Capturar las posiciones al caer para calcular el daño de caida
+		private float _initHeight;
+		private float _finalHeight;
 		private bool _charging = false;
 
-		private AnimatedSprite2D _animatedSprite;
+		[Export] private CollisionShape2D _collision;
+		[Export] private AnimatedSprite2D _animatedSprite;
+		[Export] private ProgressBar _healthBar;
 
 		StateMachine _stateMachine;
 		public void SetCharging()
@@ -76,13 +81,27 @@ namespace FallKnight.Scripts.PlayerScript
 		{
 			_hit = !_hit;
 		}
+		public float getInitHeight()
+		{
+			return _initHeight;
+		}
+		public void setInitHeight(float a)
+		{
+			_initHeight = a;
+		}
 
+		public float getFinalHeight()
+		{
+			return _finalHeight;
+		}
+		public void setFinalHeight(float a)
+		{
+			_finalHeight = a;
+		}
 
+		[Signal] public delegate void playerDeadEventHandler();
 		public override void _Ready()
 		{
-			_stateMachine = GetNode<StateMachine>("StateMachine");
-			_animatedSprite = GetNode<AnimatedSprite2D>("Sprite");
-			_collision = GetNode<CollisionShape2D>("Collision");
 		}
 
 		public void SetAnimation(string animationName)
@@ -109,10 +128,7 @@ namespace FallKnight.Scripts.PlayerScript
 			if (collision != null)
 			{
 				//Solo ejecuta la animación del hit una vez haya saltado y que haya collisionado con algo
-
-
 				Vector2 normal = collision.GetNormal();
-				GD.Print(normal);
 				if (normal == new Vector2(0, -1))
 				{
 					vel = Velocity;
@@ -120,7 +136,6 @@ namespace FallKnight.Scripts.PlayerScript
 				else
 				{
 					SetAnimation("hit");
-
 					_hit = true;
 					vel = vel.Bounce(normal);
 				}
@@ -129,5 +144,29 @@ namespace FallKnight.Scripts.PlayerScript
 			Velocity = vel;
 			MoveAndSlide();
 		}
+
+	public void fallDamage()
+		{
+		float fallenHeight =_finalHeight - _initHeight;
+		float MaxHeightWhioutDAmenge = 600f;
+		//GD.Print(fallenHeight); 
+
+			if (fallenHeight > MaxHeightWhioutDAmenge)
+			{
+				_health -= (int)(fallenHeight-MaxHeightWhioutDAmenge);
+				if(_health<0) _health = 0;
+			}
+			_healthBar.Value = _health;
+			
+			if (_health == 0)
+			{
+				EmitSignal(SignalName.playerDead);
+			}
+		_initHeight = 0f;
+		_finalHeight = 0f;
+
+
+		}
 	}
 }
+

@@ -17,14 +17,14 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
 
         public override void Enter()
         {
-            //GD.Print("Entered Falling State");
+            GD.Print("Entered Falling State");
             if(_player.GetHit())
             {
             _player.SetAnimation("hit");
-            _player.SetHit();
-                
+            _player.SetHit(); 
             } 
             else _player.SetAnimation("fall");
+            _player.setInitHeight(_player.Position.Y);
         }
 
         public override void Update(double delta)
@@ -32,9 +32,9 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
             if (_player.IsOnFloor())
             {
                 if (_player.IsOnFloor())
+            _player.setFinalHeight(_player.Position.Y);
                     stateMachine.TransitionTo("IdleState");
             }
-
         }
         public override void UpdatePhysics(double delta)
         {

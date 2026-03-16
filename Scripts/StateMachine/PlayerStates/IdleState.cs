@@ -20,14 +20,15 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
     {
         _player.Velocity = Vector2.Zero; 
         _player.SetHit();
-        //GD.Print("Entered Idle State");
+        GD.Print("Entered Idle State");
          _player.SetAnimation("idle");
+         _player.fallDamage();
     }
     public override void Update(double delta)
     {
  
 
-        if (!_player.IsOnFloor() && _player.Velocity.Y > 0)
+        if (!_player.IsOnFloor())
         {
             stateMachine.TransitionTo("FallingState");
         }

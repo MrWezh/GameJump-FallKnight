@@ -19,6 +19,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         }
         public override void Enter()
         {
+            GD.Print("Entered walk State");
         _player.SetAnimation("walk");
             
 

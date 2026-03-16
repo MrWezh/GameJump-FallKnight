@@ -15,8 +15,10 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
     }
     public override void Enter()
-    {
-    }
+        {
+            _player.Velocity = Vector2.Zero;
+            GD.Print("Entered jump State");
+        }
 
     public override void Update(double delta)
     {
@@ -36,9 +38,8 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
          a cargar el salto, hasta un límite máximo definido por MaxChargeJump.*/
         if (_player.GetCharging())
         {
-        _player.Velocity = Vector2.Zero;
         _player.SetAnimation("pre-jump");
-            //GD.Print("Charging Jump...");
+            GD.Print("Charging Jump...");
             float _jump = _player.GetJumpVelocity();
             _jump -= (float)(_player.GetChargeRate() * delta);
             if (_jump < _player.GetMaxJumpVelocity())
@@ -72,6 +73,10 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         _player.SetJumpVelocity(_player.GetMinJumpVelocity()); // Resetea la velocidad de salto para el próximo salto
     }
 
+        public override void HandleInput(InputEvent @event)
+        {
+
+        }
 
     }
 }
