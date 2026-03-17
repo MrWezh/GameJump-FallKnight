@@ -157,9 +157,13 @@ script = ExtResource("6_tx1dd")
 script = ExtResource("7_gymyn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1806114049]
-position = Vector2(0, -100)
+offset = Vector2(0, 100)
+limit_enabled = false
 limit_left = 0
 limit_bottom = 648
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1236342326]
+remote_path = NodePath("../Camera2D")
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
