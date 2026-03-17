@@ -11,11 +11,12 @@ namespace FallKnight.Scripts.PlayerScript
 	{
 
 		private int _health = 100;
-		private const float Speed = 150.0f;
+		private const float _block = 32.0f; 
+		private const float Speed = 160;
 		private float JumpVelocity = -50.0f;
 		private const float weight = 50f;
-		private const float MinmJumpVelocity = -50.0f;
-		private const float MaxJumpVelocity = -600.0f;
+		private const float _minmJumpVelocity = -50.0f;
+		private const float _maxJumpVelocity = -600;
 		private const float ChargeRate = 1000.0f;
 		private bool _hit = false;
 
@@ -40,12 +41,12 @@ namespace FallKnight.Scripts.PlayerScript
 		}
 		public float GetMinJumpVelocity()
 		{
-			return MinmJumpVelocity;
+			return _minmJumpVelocity;
 		}
 
 		public float GetMaxJumpVelocity()
 		{
-			return MaxJumpVelocity;
+			return _maxJumpVelocity;
 		}
 		public float GetChargeRate()
 		{
@@ -101,8 +102,8 @@ namespace FallKnight.Scripts.PlayerScript
 
 		[Signal] public delegate void playerDeadEventHandler();
 		public override void _Ready()
-		{
-		}
+        {
+        }
 
 		public void SetAnimation(string animationName)
 		{
@@ -146,10 +147,9 @@ namespace FallKnight.Scripts.PlayerScript
 
 	public void fallDamage()
 		{
-		float bloc = 32;
 		float fallenHeight =_finalHeight - _initHeight;
 		GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
-		float MaxHeightWhioutDAmenge = 15*bloc;
+		float MaxHeightWhioutDAmenge = 700;
 		//GD.Print(fallenHeight); 
 
 			if (fallenHeight > MaxHeightWhioutDAmenge)

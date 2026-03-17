@@ -15,7 +15,7 @@ _timer = NodePath("GameOver/Timer")
 scale = Vector2(3, 3)
 
 [node name="Player" parent="." unique_id=657798253 instance=ExtResource("2_jjvhh")]
-position = Vector2(628, 527)
+position = Vector2(648, 612)
 collision_layer = 2
 
 [node name="GameOver" parent="." unique_id=646237811 instance=ExtResource("5_kry3j")]
