@@ -136,7 +136,6 @@ namespace FallKnight.Scripts.PlayerScript
 				else
 				{
 					SetAnimation("hit");
-					_hit = true;
 					vel = vel.Bounce(normal);
 				}
 			}
@@ -162,6 +161,7 @@ namespace FallKnight.Scripts.PlayerScript
 			
 			if (_health == 0)
 			{
+				SetAnimation("die");
 				EmitSignal(SignalName.playerDead);
 			}
 		_initHeight = 0f;
@@ -169,6 +169,11 @@ namespace FallKnight.Scripts.PlayerScript
 
 
 		}
+
+      public void onHealthDown(float newValue)
+        {
+            SetAnimation("die");
+        }
 	}
 }
 

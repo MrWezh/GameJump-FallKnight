@@ -18,12 +18,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         public override void Enter()
         {
             GD.Print("Entered Falling State");
-            if(_player.GetHit())
-            {
-            _player.SetAnimation("hit");
-            _player.SetHit(); 
-            } 
-            else _player.SetAnimation("fall");
+            _player.SetAnimation("fall");
             _player.setInitHeight(_player.Position.Y);
         }
 
