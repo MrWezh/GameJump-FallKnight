@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cd7u08byn266o" path="res://Scripts/Player.cs" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dfo1r2ol022qm" path="res://Assets/ProtaSpriteSheet.png" id="2_3smsa"]
+[ext_resource type="Theme" uid="uid://db8k3017twb7n" path="res://Themes/healthBarTheme.tres" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://cmvajcbd8n2th" path="res://Scripts/StateMachine/StateMachine.cs" id="3_3smsa"]
 [ext_resource type="Script" uid="uid://cgm3i7kkmjgs" path="res://Scripts/StateMachine/PlayerStates/IdleState.cs" id="4_8erm5"]
 [ext_resource type="Script" uid="uid://rccpnm0fhaji" path="res://Scripts/StateMachine/PlayerStates/WalkingState.cs" id="5_f1ek2"]
@@ -108,13 +109,16 @@ _animatedSprite = NodePath("Sprite")
 _healthBar = NodePath("HealthBar")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=316556182]
+z_index = 1
 texture_filter = 1
-offset_left = -152.0
-offset_top = -110.0
-offset_right = 141.0
-offset_bottom = -83.0
+offset_left = -32.0
+offset_top = 49.0
+offset_right = 30.0
+offset_bottom = 57.0
+theme = ExtResource("2_8erm5")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 value = 100.0
+show_percentage = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
 texture_filter = 1

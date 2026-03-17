@@ -19,6 +19,10 @@ config/icon="res://Assets/icon.svg"
 
 project/assembly_name="GameJump_FallKnight"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GDScript/addons/YATI/plugin.cfg", "res://addons/YATI/plugin.cfg")
+
 [input]
 
 jump={

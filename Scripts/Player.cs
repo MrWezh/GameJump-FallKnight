@@ -147,8 +147,10 @@ namespace FallKnight.Scripts.PlayerScript
 
 	public void fallDamage()
 		{
+		float bloc = 32;
 		float fallenHeight =_finalHeight - _initHeight;
-		float MaxHeightWhioutDAmenge = 600f;
+		GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
+		float MaxHeightWhioutDAmenge = 15*bloc;
 		//GD.Print(fallenHeight); 
 
 			if (fallenHeight > MaxHeightWhioutDAmenge)
