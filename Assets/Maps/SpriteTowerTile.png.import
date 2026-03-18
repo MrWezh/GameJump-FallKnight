@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://whfvv22pey8f"
-path="res://.godot/imported/ProtaSpriteSheet.png-fb765b37f4fb26a5f7cd856d5e5f46c8.ctex"
+uid="uid://b33h5ub3fgfg0"
+path="res://.godot/imported/SpriteTowerTile.png-c1a4214738363118b2623b6f1e353e21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ProtaSpriteSheet.png"
-dest_files=["res://.godot/imported/ProtaSpriteSheet.png-fb765b37f4fb26a5f7cd856d5e5f46c8.ctex"]
+source_file="res://Assets/Maps/SpriteTowerTile.png"
+dest_files=["res://.godot/imported/SpriteTowerTile.png-c1a4214738363118b2623b6f1e353e21.ctex"]
 
 [params]
 

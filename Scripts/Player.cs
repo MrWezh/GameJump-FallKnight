@@ -11,7 +11,7 @@ namespace FallKnight.Scripts.PlayerScript
 	{
 
 		private int _health = 100;
-		private const float Speed = 150.0f;
+		private const float Speed = 160.0f;
 		private float JumpVelocity = -50.0f;
 		private const float weight = 50f;
 		private const float MinmJumpVelocity = -50.0f;
@@ -149,7 +149,7 @@ namespace FallKnight.Scripts.PlayerScript
 		float bloc = 32;
 		float fallenHeight =_finalHeight - _initHeight;
 		GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
-		float MaxHeightWhioutDAmenge = 15*bloc;
+		float MaxHeightWhioutDAmenge = 16*bloc;
 		//GD.Print(fallenHeight); 
 
 			if (fallenHeight > MaxHeightWhioutDAmenge)

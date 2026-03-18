@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2etaji7beikv"]
 
 [ext_resource type="Script" uid="uid://cd7u08byn266o" path="res://Scripts/Player.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dfo1r2ol022qm" path="res://Assets/ProtaSpriteSheet.png" id="2_3smsa"]
+[ext_resource type="Texture2D" uid="uid://whfvv22pey8f" path="res://Assets/ProtaSpriteSheet.png" id="2_3smsa"]
 [ext_resource type="Theme" uid="uid://db8k3017twb7n" path="res://Themes/healthBarTheme.tres" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://cmvajcbd8n2th" path="res://Scripts/StateMachine/StateMachine.cs" id="3_3smsa"]
 [ext_resource type="Script" uid="uid://cgm3i7kkmjgs" path="res://Scripts/StateMachine/PlayerStates/IdleState.cs" id="4_8erm5"]
@@ -157,9 +157,13 @@ script = ExtResource("6_tx1dd")
 script = ExtResource("7_gymyn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1806114049]
-position = Vector2(0, -100)
+zoom = Vector2(0.7, 0.7)
+limit_enabled = false
 limit_left = 0
 limit_bottom = 648
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1518196934]
+remote_path = NodePath("../Camera2D")
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
