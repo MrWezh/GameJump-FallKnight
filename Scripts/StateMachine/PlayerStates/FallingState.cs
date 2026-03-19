@@ -9,7 +9,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
     {
         private Player _player;
 
-        public override async void Ready()
+        public override void Ready()
         {
             _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
 
