@@ -12,6 +12,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public int _health = 100;
 		public int _armor = 0;
+		public bool _featherFallActive = false;
 		private const float Speed = 160.0f;
 		private float JumpVelocity = -50.0f;
 		private const float weight = 50f;
@@ -177,7 +178,9 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UseFeatherFall()
 		{
-			JumpVelocity = -200f;
+			_featherFallActive = true;
+			GetGravity();
+			PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 490f);
 		}
 
 		
@@ -188,19 +191,26 @@ namespace FallKnight.Scripts.PlayerScript
 			float fallenHeight =_finalHeight - _initHeight;
 			GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
 			float MaxHeightWithoutDamage = 16*bloc;
+
 			//GD.Print(fallenHeight); 
 
 			if (fallenHeight > MaxHeightWithoutDamage)
 			{
+				int damage = (int)(fallenHeight - MaxHeightWithoutDamage);
+				if (_featherFallActive)
+				{
+					damage = damage / 2;
+				}
+
 				if (_armor > 0)
 				{
-					_armor -= (int)(fallenHeight - MaxHeightWithoutDamage);
+					_armor -= damage;
 					if (_armor < 0) _armor = 0;
 					
 				}
 				else
 				{
-					_health -= (int)(fallenHeight-MaxHeightWithoutDamage);
+					_health -= damage;
 					if(_health < 0) _health = 0;
 				}
 			}

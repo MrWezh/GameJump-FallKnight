@@ -15,9 +15,9 @@ public partial class PowerUps : Area2D
 	public Player player;
 
 	public override void _Ready()
-		{
-		BodyEntered += OnPlayerPickedUp;
-		}
+	{
+		
+	}
 
 	public void ApplyPowerUp(Player player)
 	{

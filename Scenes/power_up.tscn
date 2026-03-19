@@ -7,6 +7,7 @@
 size = Vector2(32, 32)
 
 [node name="PowerUp" type="Area2D" unique_id=1104355319]
+scale = Vector2(2, 2)
 input_pickable = false
 script = ExtResource("1_p3i06")
 

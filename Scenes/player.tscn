@@ -181,4 +181,3 @@ remote_path = NodePath("../Camera2D")
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
-[connection signal="value_changed" from="ArmorBar" to="." method="onHealthDown"]
