@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://4o21rc3nhbng"]
+
+[ext_resource type="Script" uid="uid://m716wtgx0ww4" path="res://Scripts/PowerUps.cs" id="1_p3i06"]
+[ext_resource type="Texture2D" uid="uid://ctp351n54tacv" path="res://Assets/PowerUp.png" id="1_psa43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eewhk"]
+size = Vector2(32, 32)
+
+[node name="PowerUp" type="Area2D" unique_id=1104355319]
+input_pickable = false
+script = ExtResource("1_p3i06")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=413675953]
+texture_filter = 3
+texture = ExtResource("1_psa43")
+
+[node name="PowerUpArea" type="CollisionShape2D" parent="." unique_id=1498151735]
+shape = SubResource("RectangleShape2D_eewhk")
+
+[connection signal="body_entered" from="." to="." method="OnPlayerPickedUp"]

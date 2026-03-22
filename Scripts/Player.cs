@@ -10,13 +10,13 @@ namespace FallKnight.Scripts.PlayerScript
 	public partial class Player : CharacterBody2D
 	{
 
-		private int _health = 100;
-		private const float _block = 32.0f; 
-		private const float Speed = 160;
+		public int _health = 100;
+		public int _armor = 0;
+		private const float Speed = 160.0f;
 		private float JumpVelocity = -50.0f;
 		private const float weight = 50f;
-		private const float _minmJumpVelocity = -50.0f;
-		private const float _maxJumpVelocity = -600;
+		private const float MinJumpVelocity = -50.0f;
+		private const float MaxJumpVelocity = -600.0f;
 		private const float ChargeRate = 1000.0f;
 		private bool _hit = false;
 
@@ -28,6 +28,9 @@ namespace FallKnight.Scripts.PlayerScript
 		[Export] private CollisionShape2D _collision;
 		[Export] private AnimatedSprite2D _animatedSprite;
 		[Export] private ProgressBar _healthBar;
+		[Export] private ProgressBar _armorBar;
+
+		PowerUps _powerUp;
 
 		StateMachine _stateMachine;
 		public void SetCharging()
@@ -41,7 +44,7 @@ namespace FallKnight.Scripts.PlayerScript
 		}
 		public float GetMinJumpVelocity()
 		{
-			return _minmJumpVelocity;
+			return MinJumpVelocity;
 		}
 
 		public float GetMaxJumpVelocity()
@@ -102,8 +105,9 @@ namespace FallKnight.Scripts.PlayerScript
 
 		[Signal] public delegate void playerDeadEventHandler();
 		public override void _Ready()
-        {
-        }
+		{
+		
+		}
 
 		public void SetAnimation(string animationName)
 		{
@@ -145,29 +149,72 @@ namespace FallKnight.Scripts.PlayerScript
 			MoveAndSlide();
 		}
 
+		public void HideArmorBar()
+		{
+			if (_armor == 0)
+			{
+				_armorBar.Visible = false;
+			}
+			else
+			{
+				_armorBar.Visible = true;
+			}
+		}
+
+		public void UsePotion()
+		{
+			_health += 100;
+			if (_health > 100) _health = 100;
+			_healthBar.Value = _health;
+		}
+
+		public void UseArmor()
+		{
+			_armor += 100;
+			if (_armor > 100) _armor = 100;
+			_armorBar.Value = _armor;
+		}
+
+		public void UseFeatherFall()
+		{
+			JumpVelocity = -200f;
+		}
+
+		
+
 	public void fallDamage()
 		{
-		float fallenHeight =_finalHeight - _initHeight;
-		GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
-		float MaxHeightWhioutDAmenge = 700;
-		//GD.Print(fallenHeight); 
+			float bloc = 32;
+			float fallenHeight =_finalHeight - _initHeight;
+			GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
+			float MaxHeightWithoutDamage = 16*bloc;
+			//GD.Print(fallenHeight); 
 
-			if (fallenHeight > MaxHeightWhioutDAmenge)
+			if (fallenHeight > MaxHeightWithoutDamage)
 			{
-				_health -= (int)(fallenHeight-MaxHeightWhioutDAmenge);
-				if(_health<0) _health = 0;
+				if (_armor > 0)
+				{
+					_armor -= (int)(fallenHeight - MaxHeightWithoutDamage);
+					if (_armor < 0) _armor = 0;
+					
+				}
+				else
+				{
+					_health -= (int)(fallenHeight-MaxHeightWithoutDamage);
+					if(_health < 0) _health = 0;
+				}
 			}
+			_armorBar.Value = _armor;
 			_healthBar.Value = _health;
 			
-			if (_health == 0)
-			{
-				SetAnimation("die");
-				EmitSignal(SignalName.playerDead);
-			}
-		_initHeight = 0f;
-		_finalHeight = 0f;
-
-
+			if (_health == 0 && _armor == 0)
+				{
+					SetAnimation("die");
+					EmitSignal(SignalName.playerDead);
+				}
+			
+			_initHeight = 0f;
+			_finalHeight = 0f;
 		}
 
       public void onHealthDown(float newValue)

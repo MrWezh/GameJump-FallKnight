@@ -12,7 +12,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         private Player _player;
         Vector2 velocity;
 
-        public override async void Ready()
+        public override void Ready()
         {
             _player = (Player)GetParent().GetParent<CharacterBody2D>() as Player;
             velocity = _player.Velocity;

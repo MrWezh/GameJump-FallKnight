@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://b2etaji7beikv"]
 
 [ext_resource type="Script" uid="uid://cd7u08byn266o" path="res://Scripts/Player.cs" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://dfo1r2ol022qm" path="res://Assets/ProtaSpriteSheet.png" id="2_3smsa"]
+[ext_resource type="Texture2D" uid="uid://whfvv22pey8f" path="res://Assets/ProtaSpriteSheet.png" id="2_3smsa"]
 [ext_resource type="Theme" uid="uid://db8k3017twb7n" path="res://Themes/healthBarTheme.tres" id="2_8erm5"]
 [ext_resource type="Script" uid="uid://cmvajcbd8n2th" path="res://Scripts/StateMachine/StateMachine.cs" id="3_3smsa"]
+[ext_resource type="Theme" uid="uid://cvfy83w8sjifd" path="res://Themes/armorBarTheme.tres" id="3_f1ek2"]
 [ext_resource type="Script" uid="uid://cgm3i7kkmjgs" path="res://Scripts/StateMachine/PlayerStates/IdleState.cs" id="4_8erm5"]
 [ext_resource type="Script" uid="uid://rccpnm0fhaji" path="res://Scripts/StateMachine/PlayerStates/WalkingState.cs" id="5_f1ek2"]
 [ext_resource type="Script" uid="uid://cv0hdrp83y046" path="res://Scripts/StateMachine/PlayerStates/JumpingState.cs" id="6_tx1dd"]
@@ -113,12 +114,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(36, 42)
 
-[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_healthBar")]
+[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_healthBar", "_armorBar")]
 input_pickable = true
 script = ExtResource("1_cvnsp")
 _collision = NodePath("Collision")
 _animatedSprite = NodePath("Sprite")
 _healthBar = NodePath("HealthBar")
+_armorBar = NodePath("ArmorBar")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=316556182]
 z_index = 1
@@ -133,6 +135,17 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="ArmorBar" type="ProgressBar" parent="." unique_id=33755168]
+z_index = 1
+texture_filter = 1
+offset_left = -32.0
+offset_top = 59.0
+offset_right = 30.0
+offset_bottom = 67.0
+theme = ExtResource("3_f1ek2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+show_percentage = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
 texture_filter = 1
@@ -161,12 +174,15 @@ script = ExtResource("6_tx1dd")
 script = ExtResource("7_gymyn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1806114049]
-offset = Vector2(0, 100)
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.7, 0.7)
+limit_enabled = false
 limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 63400
+limit_top = -280
+limit_right = 1646
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1518196934]
+remote_path = NodePath("../Camera2D")
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
+[connection signal="value_changed" from="ArmorBar" to="." method="onHealthDown"]
