@@ -24,7 +24,6 @@ namespace FallKnight.Scripts.PlayerScript
 		private float _initHeight;
 		private float _finalHeight;
 		private bool _charging = false;
-
 		[Export] private CollisionShape2D _collision;
 		[Export] private AnimatedSprite2D _animatedSprite;
 		[Export] private ProgressBar _healthBar;
@@ -49,7 +48,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public float GetMaxJumpVelocity()
 		{
-			return _maxJumpVelocity;
+			return MaxJumpVelocity;
 		}
 		public float GetChargeRate()
 		{
@@ -170,6 +169,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UseArmor()
 		{
+			_armorBar.Visible = true;
 			_armor += 100;
 			if (_armor > 100) _armor = 100;
 			_armorBar.Value = _armor;
@@ -192,35 +192,31 @@ namespace FallKnight.Scripts.PlayerScript
 
 			if (fallenHeight > MaxHeightWithoutDamage)
 			{
+				int damage = (int)(fallenHeight - MaxHeightWithoutDamage);
 				if (_armor > 0)
-				{
-					_armor -= (int)(fallenHeight - MaxHeightWithoutDamage);
-					if (_armor < 0) _armor = 0;
-					
+				{	
+					_armor -= damage;
+					if (_armor < 0) {
+						_health += _armor;
+						_armor = 0;
+						}
 				}
 				else
 				{
-					_health -= (int)(fallenHeight-MaxHeightWithoutDamage);
-					if(_health < 0) _health = 0;
+					_health -= damage;
 				}
+				SetAnimation("die");
 			}
-			_armorBar.Value = _armor;
-			_healthBar.Value = _health;
-			
-			if (_health == 0 && _armor == 0)
+			if (_health < 0)
 				{
-					SetAnimation("die");
 					EmitSignal(SignalName.playerDead);
 				}
-			
+			_armorBar.Value = _armor;
+			_healthBar.Value = _health;
+			HideArmorBar();
 			_initHeight = 0f;
 			_finalHeight = 0f;
 		}
-
-      public void onHealthDown(float newValue)
-        {
-            SetAnimation("die");
-        }
 	}
 }
 

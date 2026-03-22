@@ -4,14 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://ctp351n54tacv" path="res://Assets/PowerUp.png" id="1_psa43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eewhk"]
-size = Vector2(32, 32)
+size = Vector2(46, 48)
 
-[node name="PowerUp" type="Area2D" unique_id=1104355319]
+[node name="PowerUp" type="Area2D" unique_id=1104355319 node_paths=PackedStringArray("_sprite")]
 input_pickable = false
 script = ExtResource("1_p3i06")
+_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=413675953]
 texture_filter = 3
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_psa43")
 
 [node name="PowerUpArea" type="CollisionShape2D" parent="." unique_id=1498151735]
