@@ -379,4 +379,4 @@ wait_time = 5.0
 one_shot = true
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
-[connection signal="timeout" from="FeatherFallTimer" to="." method="onFeatherFallTtimeout"]
+[connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]

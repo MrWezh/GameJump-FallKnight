@@ -12,6 +12,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public int _health = 100;
 		public int _armor = 0;
+		public bool _featherFallActive = false;
 		private const float Speed = 160.0f;
 		private float JumpVelocity = -50.0f;
 		private const float weight = 50f;
@@ -19,7 +20,6 @@ namespace FallKnight.Scripts.PlayerScript
 		private const float MaxJumpVelocity = -600.0f;
 		private const float ChargeRate = 1000.0f;
 		private bool _hit = false;
-		private bool _featherFallActive;
 		//Capturar las posiciones al caer para calcular el daño de caida
 		private float _initHeight;
 		private float _finalHeight;
