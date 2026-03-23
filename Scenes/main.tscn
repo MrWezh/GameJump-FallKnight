@@ -43,7 +43,7 @@ position = Vector2(335, 2545)
 PowerUpType = 2
 
 [node name="PowerUp3" parent="PowerUps" unique_id=670501075 instance=ExtResource("5_21xkr")]
-position = Vector2(1192, 1018)
-PowerUpType = 2
+position = Vector2(824, 624)
+PowerUpType = 1
 
 [connection signal="timeout" from="GameOver/Timer" to="." method="onTimerTimeout"]

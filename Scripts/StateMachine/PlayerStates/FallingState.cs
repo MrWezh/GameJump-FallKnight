@@ -18,7 +18,9 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         public override void Enter()
         {
             GD.Print("Entered Falling State");
-            _player.SetAnimation("fall");
+         if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasFall");
+        else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorFall");
+        else _player.SetAnimation("fall");
             _player.setInitHeight(_player.Position.Y);
         }
 

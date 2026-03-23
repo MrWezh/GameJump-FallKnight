@@ -20,7 +20,6 @@ namespace FallKnight.Scripts.PlayerScript
 		private const float ChargeRate = 1000.0f;
 		private bool _hit = false;
 		private bool _featherFallActive;
-
 		//Capturar las posiciones al caer para calcular el daño de caida
 		private float _initHeight;
 		private float _finalHeight;
@@ -109,6 +108,10 @@ namespace FallKnight.Scripts.PlayerScript
         {
             return _featherFallActive;
         }
+		public bool GetArmorBarVisibility()
+        {
+            return _armorBar.Visible;
+        }
 
 		[Signal] public delegate void playerDeadEventHandler();
 		public override void _Ready()
@@ -147,7 +150,9 @@ namespace FallKnight.Scripts.PlayerScript
 				}
 				else
 				{
-					SetAnimation("hit");
+					if(GetFeatherFallActive()) SetAnimation("ParaguasHit");
+        			else if(GetArmorBarVisibility()) SetAnimation("ArmorHit");
+        			else SetAnimation("hit");
 					vel = vel.Bounce(normal);
 				}
 			}
@@ -156,7 +161,7 @@ namespace FallKnight.Scripts.PlayerScript
 			MoveAndSlide();
 		}
 
-		public void HideArmorBar()
+		public void ArmorVisibility()
 		{
 			if (_armor == 0)
 			{
@@ -177,7 +182,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UseArmor()
 		{
-			_armorBar.Visible = true;
+			ArmorVisibility();
 			_armor += 100;
 			if (_armor > 100) _armor = 100;
 			_armorBar.Value = _armor;
@@ -197,10 +202,6 @@ public void UseFeatherFall()
 		   _featherFallTimer.Stop();
 		   _featherFallActive = false;
         }
-
-
-		
-
 	public void fallDamage()
 		{
 			float bloc = 32;
@@ -225,15 +226,17 @@ public void UseFeatherFall()
 				{
 					_health -= damage;
 				}
-				SetAnimation("die");
+					if(GetFeatherFallActive()) SetAnimation("ParaguasDie");
+        			else if(GetArmorBarVisibility()) SetAnimation("ArmorDie");
+        			else SetAnimation("die");
 			}
 			if (_health < 0)
 				{
 					EmitSignal(SignalName.playerDead);
 				}
 			_armorBar.Value = _armor;
+			ArmorVisibility();
 			_healthBar.Value = _health;
-			HideArmorBar();
 			_initHeight = 0f;
 			_finalHeight = 0f;
 		}

@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://cv0hdrp83y046" path="res://Scripts/StateMachine/PlayerStates/JumpingState.cs" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://ctjeqd7jovxs" path="res://Scripts/StateMachine/PlayerStates/FallingState.cs" id="7_gymyn"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
+atlas = ExtResource("2_3smsa")
+region = Rect2(224, 32, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
 atlas = ExtResource("2_3smsa")
 region = Rect2(192, 32, 32, 32)
@@ -42,6 +46,10 @@ region = Rect2(64, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ijsl"]
 atlas = ExtResource("2_3smsa")
 region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh6i2"]
+atlas = ExtResource("5_tx1dd")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1odr"]
 atlas = ExtResource("5_tx1dd")
@@ -115,6 +123,14 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_36dho")
+}],
+"loop": true,
+"name": &"ArmorDie",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qqcod")
 }],
 "loop": true,
@@ -165,6 +181,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"ArmorWalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh6i2")
+}],
+"loop": true,
+"name": &"ParaguasDie",
 "speed": 5.0
 }, {
 "frames": [{
@@ -324,7 +348,7 @@ show_percentage = false
 texture_filter = 1
 scale = Vector2(2.513, 3)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"ArmorWalk"
+animation = &"ArmorHit"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
 shape = SubResource("RectangleShape2D_3smsa")

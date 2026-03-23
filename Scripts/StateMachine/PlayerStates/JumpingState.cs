@@ -38,7 +38,9 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
          a cargar el salto, hasta un límite máximo definido por MaxChargeJump.*/
         if (_player.GetCharging())
         {
-        _player.SetAnimation("pre-jump");
+        if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasPre-jump");
+        else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorPre-jump");
+        else _player.SetAnimation("pre-jump");
             GD.Print("Charging Jump...");
             float _jump = _player.GetJumpVelocity();
             _jump -= (float)(_player.GetChargeRate() * delta);
@@ -60,6 +62,9 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
            velocity.X = direction * _player.GetSpeed();
         }
             GD.Print("jump"); 
+        if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasJump");
+        else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorJump");
+        else _player.SetAnimation("jump");
             GD.Print(_player.GetJumpVelocity());            
              velocity.Y += _player.GetJumpVelocity();
             _player.SetCharging();

@@ -20,7 +20,9 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         public override void Enter()
         {
             GD.Print("Entered walk State");
-        _player.SetAnimation("walk");
+        if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasWalk");
+        else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorWalk");
+        else _player.SetAnimation("walk");
             
 
         }
