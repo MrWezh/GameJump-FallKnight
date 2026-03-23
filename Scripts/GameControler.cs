@@ -14,6 +14,8 @@ public partial class GameControler : Node
 			_player.playerDead += playerDead;
 			_gameOverMensage.Visible = false;
 			GetTree().Paused = false;
+           PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 980.0f);
+
 		}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -19,6 +19,7 @@ namespace FallKnight.Scripts.PlayerScript
 		private const float MaxJumpVelocity = -600.0f;
 		private const float ChargeRate = 1000.0f;
 		private bool _hit = false;
+		private bool _featherFallActive;
 
 		//Capturar las posiciones al caer para calcular el daño de caida
 		private float _initHeight;
@@ -28,10 +29,12 @@ namespace FallKnight.Scripts.PlayerScript
 		[Export] private AnimatedSprite2D _animatedSprite;
 		[Export] private ProgressBar _healthBar;
 		[Export] private ProgressBar _armorBar;
+		[Export] private Timer _featherFallTimer;
 
-		PowerUps _powerUp;
+		public PowerUps _powerUp;
 
 		StateMachine _stateMachine;
+
 		public void SetCharging()
 		{
 			_charging = !_charging;
@@ -101,6 +104,11 @@ namespace FallKnight.Scripts.PlayerScript
 		{
 			_finalHeight = a;
 		}
+
+		public bool GetFeatherFallActive()
+        {
+            return _featherFallActive;
+        }
 
 		[Signal] public delegate void playerDeadEventHandler();
 		public override void _Ready()
@@ -175,10 +183,21 @@ namespace FallKnight.Scripts.PlayerScript
 			_armorBar.Value = _armor;
 		}
 
-		public void UseFeatherFall()
-		{
-			JumpVelocity = -200f;
-		}
+public void UseFeatherFall()
+       {
+           _featherFallActive = true;
+           GetGravity();
+           PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 200f);
+		   _featherFallTimer.Start();
+       }
+
+	   void onFeatherFallTtimeout()
+        {
+           PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 980.0f);
+		   _featherFallTimer.Stop();
+		   _featherFallActive = false;
+        }
+
 
 		
 
@@ -186,13 +205,14 @@ namespace FallKnight.Scripts.PlayerScript
 		{
 			float bloc = 32;
 			float fallenHeight =_finalHeight - _initHeight;
-			GD.Print("Altura inicia: ", _initHeight, ", altura final: ", _finalHeight);
 			float MaxHeightWithoutDamage = 16*bloc;
-			//GD.Print(fallenHeight); 
-
 			if (fallenHeight > MaxHeightWithoutDamage)
 			{
-				int damage = (int)(fallenHeight - MaxHeightWithoutDamage);
+			int damage = (int)(fallenHeight - MaxHeightWithoutDamage);
+			if(_featherFallActive) damage = damage/8;
+			GD.Print(damage);
+			GD.Print(GetGravity());
+
 				if (_armor > 0)
 				{	
 					_armor -= damage;

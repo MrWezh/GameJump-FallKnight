@@ -5,10 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bkgbjnruodj2d" path="res://Assets/Maps/MAP.tmx" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://4o21rc3nhbng" path="res://Scenes/power_up.tscn" id="5_21xkr"]
 [ext_resource type="PackedScene" uid="uid://1escpa8exs4u" path="res://Scenes/game_over.tscn" id="5_kry3j"]
-[ext_resource type="Script" uid="uid://c3tw4jeiynw0q" path="res://Scripts/AreaPrueba.cs" id="6_21xkr"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
-size = Vector2(205, 457)
 
 [node name="Main" type="Node" unique_id=578939692 node_paths=PackedStringArray("_gameOverMensage", "_player", "_timer")]
 script = ExtResource("1_jjvhh")
@@ -37,13 +33,6 @@ process_callback = 0
 wait_time = 2.0
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=518229492]
-script = ExtResource("6_21xkr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=814084776]
-position = Vector2(1220, 451)
-shape = SubResource("RectangleShape2D_kry3j")
-
 [node name="PowerUps" type="Node" parent="." unique_id=1775962612]
 
 [node name="PowerUp" parent="PowerUps" unique_id=1104355319 instance=ExtResource("5_21xkr")]
@@ -54,8 +43,7 @@ position = Vector2(335, 2545)
 PowerUpType = 2
 
 [node name="PowerUp3" parent="PowerUps" unique_id=670501075 instance=ExtResource("5_21xkr")]
-position = Vector2(932, 635)
-PowerUpType = 1
+position = Vector2(1192, 1018)
+PowerUpType = 2
 
 [connection signal="timeout" from="GameOver/Timer" to="." method="onTimerTimeout"]
-[connection signal="body_entered" from="Area2D" to="." method="OnCuerpoEntrar"]

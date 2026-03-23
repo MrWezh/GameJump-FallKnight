@@ -31,7 +31,7 @@ public partial class PowerUps : Area2D
 			_sprite.Texture = GD.Load<Texture2D>("uid://vxauue3ahrxw");
 			break;
 			case PowerUpTypeEnum.Armor:
-			_sprite.Texture = GD.Load<Texture2D>("uid://ctp351n54tacv");
+			_sprite.Texture = GD.Load<Texture2D>("uid://bso218sododi4");
 			break;
 			case PowerUpTypeEnum.FeatherFall:
 			_sprite.Texture = GD.Load<Texture2D>("uid://cnbecog8no8b");
