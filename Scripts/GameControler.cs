@@ -28,6 +28,7 @@ public partial class GameControler : Node
 			GetTree().Paused = true;
 			_gameOverMensage.Visible = true;
 			_timer.Start();
+			GD.Print();
 			 
 	}
 
