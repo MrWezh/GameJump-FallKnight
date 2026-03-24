@@ -1,11 +1,11 @@
 [gd_resource type="Theme" format=3 uid="uid://cvfy83w8sjifd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3smsa"]
-bg_color = Color(0, 0, 0, 0.49411765)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uel33"]
+bg_color = Color(0, 0, 0, 0.47058824)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8erm5"]
-bg_color = Color(6.160736e-06, 0.66415226, 0.80280364, 1)
+bg_color = Color(0.91602105, 0.71647197, 0, 1)
 
 [resource]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_3smsa")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_uel33")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_8erm5")

@@ -69,7 +69,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
              velocity.Y += _player.GetJumpVelocity();
             _player.SetCharging();
         }
-        velocity += _player.GetGravity() * (float)delta;
+        velocity += new Vector2(0,980.0f) * (float)delta;
         _player.Velocity = velocity;
        
     }

@@ -28,6 +28,7 @@ namespace FallKnight.Scripts.PlayerScript
 		[Export] private AnimatedSprite2D _animatedSprite;
 		[Export] private ProgressBar _healthBar;
 		[Export] private ProgressBar _armorBar;
+		[Export] private ProgressBar _featherFallBar;
 		[Export] private Timer _featherFallTimer;
 
 		public PowerUps _powerUp;
@@ -126,6 +127,15 @@ namespace FallKnight.Scripts.PlayerScript
 			_animatedSprite.Play(animationName);
 		}
 
+        public override void _Process(double delta)
+        {
+            if (_featherFallActive)
+            {
+				_featherFallBar.Value = _featherFallTimer.TimeLeft;
+            }
+           
+        }
+
 		public override void _PhysicsProcess(double delta)
 		{
 			//Invertir la animación depediendo de la dirección del input
@@ -140,7 +150,7 @@ namespace FallKnight.Scripts.PlayerScript
 			KinematicCollision2D collision = MoveAndCollide(Velocity * (float)delta);
 			Vector2 vel = Velocity;
 
-			if (collision != null)
+			if (collision != null&&!_featherFallActive)
 			{
 				//Solo ejecuta la animación del hit una vez haya saltado y que haya collisionado con algo
 				Vector2 normal = collision.GetNormal();
@@ -150,8 +160,7 @@ namespace FallKnight.Scripts.PlayerScript
 				}
 				else
 				{
-					if(GetFeatherFallActive()) SetAnimation("ParaguasHit");
-        			else if(GetArmorBarVisibility()) SetAnimation("ArmorHit");
+        			if(GetArmorBarVisibility()) SetAnimation("ArmorHit");
         			else SetAnimation("hit");
 					vel = vel.Bounce(normal);
 				}
@@ -175,9 +184,13 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UsePotion()
 		{
-			_health += 100;
+            if (IsOnFloor())
+            {
+            _health += 100;
 			if (_health > 100) _health = 100;
 			_healthBar.Value = _health;
+            }
+			
 		}
 
 		public void UseArmor()
@@ -190,14 +203,15 @@ namespace FallKnight.Scripts.PlayerScript
 
 public void UseFeatherFall()
        {
+			_featherFallBar.Visible = true;
            _featherFallActive = true;
-           GetGravity();
            PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 200f);
 		   _featherFallTimer.Start();
        }
 
-	   void onFeatherFallTtimeout()
+	  public void onFeatherFallTtimeout()
         {
+			_featherFallBar.Visible = false;
            PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 980.0f);
 		   _featherFallTimer.Stop();
 		   _featherFallActive = false;

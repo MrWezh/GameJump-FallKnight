@@ -41,6 +41,14 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
                 velocity += _player.GetGravity() * (float)delta;
 
             }
+            if (_player.GetFeatherFallActive())
+            {
+                float direction = Input.GetAxis("move_left", "move_right");
+                if (direction != 0.0f)
+                {
+                    velocity.X = direction * _player.GetSpeed();
+                }
+            }
             _player.Velocity = velocity;
         }
 

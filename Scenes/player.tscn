@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cmvajcbd8n2th" path="res://Scripts/StateMachine/StateMachine.cs" id="3_3smsa"]
 [ext_resource type="Theme" uid="uid://cvfy83w8sjifd" path="res://Themes/armorBarTheme.tres" id="3_f1ek2"]
 [ext_resource type="Script" uid="uid://cgm3i7kkmjgs" path="res://Scripts/StateMachine/PlayerStates/IdleState.cs" id="4_8erm5"]
+[ext_resource type="Theme" uid="uid://b6qgbioai0cck" path="res://Themes/featherFallBarTheme.tres" id="4_gymyn"]
 [ext_resource type="Script" uid="uid://rccpnm0fhaji" path="res://Scripts/StateMachine/PlayerStates/WalkingState.cs" id="5_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://dgbks0dcc5wqa" path="res://Assets/ProtaParaguasSpriteSheet.png" id="5_tx1dd"]
 [ext_resource type="Script" uid="uid://cv0hdrp83y046" path="res://Scripts/StateMachine/PlayerStates/JumpingState.cs" id="6_tx1dd"]
@@ -311,38 +312,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(54, 79)
 
-[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_healthBar", "_armorBar", "_featherFallTimer")]
+[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer")]
 input_pickable = true
 script = ExtResource("1_cvnsp")
 _collision = NodePath("Collision")
 _animatedSprite = NodePath("Sprite")
 _healthBar = NodePath("HealthBar")
 _armorBar = NodePath("ArmorBar")
+_featherFallBar = NodePath("FeatherFallBar")
 _featherFallTimer = NodePath("FeatherFallTimer")
-
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=316556182]
-z_index = 1
-texture_filter = 1
-offset_left = -32.0
-offset_top = 49.0
-offset_right = 30.0
-offset_bottom = 57.0
-theme = ExtResource("2_8erm5")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-value = 100.0
-show_percentage = false
-
-[node name="ArmorBar" type="ProgressBar" parent="." unique_id=33755168]
-visible = false
-z_index = 1
-texture_filter = 1
-offset_left = -32.0
-offset_top = 59.0
-offset_right = 30.0
-offset_bottom = 67.0
-theme = ExtResource("3_f1ek2")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-show_percentage = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
 texture_filter = 1
@@ -351,6 +329,7 @@ sprite_frames = SubResource("SpriteFrames_vgqql")
 animation = &"ArmorHit"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_3smsa")
 
 [node name="StateMachine" type="Node" parent="." unique_id=579789774]
@@ -375,8 +354,49 @@ limit_top = -280
 limit_right = 1920
 
 [node name="FeatherFallTimer" type="Timer" parent="." unique_id=751221474]
-wait_time = 5.0
-one_shot = true
+process_callback = 0
+wait_time = 8.0
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=316556182]
+z_index = 1
+texture_filter = 1
+offset_left = -32.0
+offset_top = 49.0
+offset_right = 30.0
+offset_bottom = 57.0
+theme = ExtResource("2_8erm5")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="ArmorBar" type="ProgressBar" parent="." unique_id=33755168]
+visible = false
+z_index = 1
+texture_filter = 1
+offset_left = -32.0
+offset_top = 59.0
+offset_right = 30.0
+offset_bottom = 67.0
+theme = ExtResource("3_f1ek2")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="FeatherFallBar" type="ProgressBar" parent="." unique_id=1593667659]
+visible = false
+z_index = 1
+texture_filter = 1
+offset_left = -32.0
+offset_top = 59.0
+offset_right = 30.0
+offset_bottom = 67.0
+theme = ExtResource("4_gymyn")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+max_value = 8.0
+step = 1.0
+value = 8.0
+show_percentage = false
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
+[connection signal="timeout" from="FeatherFallTimer" to="." method="onFeatherFallTtimeout"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
