@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cxmmll2n5fal"]
+
+[ext_resource type="Texture2D" uid="uid://bna3cvivb4mm0" path="res://Assets/Princess.png" id="1_58skr"]
+[ext_resource type="Script" uid="uid://b635r5c05tik3" path="res://Scenes/Princess.cs" id="2_hchmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58skr"]
+size = Vector2(62, 64)
+
+[node name="Princess" type="Sprite2D" unique_id=939226248]
+texture_filter = 3
+scale = Vector2(3, 3)
+texture = ExtResource("1_58skr")
+script = ExtResource("2_hchmr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1115731321]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=854339969]
+shape = SubResource("RectangleShape2D_58skr")
+
+[connection signal="body_entered" from="Area2D" to="." method="OnPlayerWin"]

@@ -400,3 +400,4 @@ show_percentage = false
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="timeout" from="FeatherFallTimer" to="." method="onFeatherFallTtimeout"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
+[connection signal="timeout" from="FeatherFallTimer" to="." method="onFeatherFallTtimeout"]
