@@ -380,3 +380,4 @@ one_shot = true
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="value_changed" from="HealthBar" to="." method="onHealthDown"]
+[connection signal="timeout" from="FeatherFallTimer" to="." method="onFeatherFallTtimeout"]
