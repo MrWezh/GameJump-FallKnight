@@ -1,9 +1,10 @@
-using FallKnight.Scripts.PlayerScript;
 using Godot;
+using FallKnight.Scripts.PlayerScript;
+using FallKnight.Scripts.PrincessScript;
 
 namespace FallKnight.Scripts.GameControlerScript
 {
-public partial class GameControler : Node
+public partial class GameControler :Node
 {
 	[Export] private CanvasLayer _gameOverMensage;
 	[Export] private CanvasLayer _victoryMensage;

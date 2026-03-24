@@ -20,6 +20,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
             GD.Print("Entered Falling State");
          if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasFall");
         else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorFall");
+        else if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("fall");
         else _player.SetAnimation("fall");
             _player.setInitHeight(_player.Position.Y);
         }

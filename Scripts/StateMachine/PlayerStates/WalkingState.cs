@@ -22,6 +22,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
             GD.Print("Entered walk State");
         if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasWalk");
         else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorWalk");
+        else if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("walk");
         else _player.SetAnimation("walk");
             
 

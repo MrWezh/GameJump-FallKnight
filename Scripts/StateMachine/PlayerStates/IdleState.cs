@@ -22,7 +22,8 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         _player.SetHit();
         GD.Print("Entered Idle State");
         if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasIdle");
-        else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorIdle");
+        if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorIdle");
+        if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("idle");
         else _player.SetAnimation("idle");
          _player.fallDamage();
     }

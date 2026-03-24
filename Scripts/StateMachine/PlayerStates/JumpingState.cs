@@ -40,6 +40,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         {
         if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasPre-jump");
         else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorPre-jump");
+        else if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("pre-jump");
         else _player.SetAnimation("pre-jump");
             GD.Print("Charging Jump...");
             float _jump = _player.GetJumpVelocity();
@@ -64,6 +65,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
             GD.Print("jump"); 
         if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasJump");
         else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorJump");
+        else if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("jump");
         else _player.SetAnimation("jump");
             GD.Print(_player.GetJumpVelocity());            
              velocity.Y += _player.GetJumpVelocity();
