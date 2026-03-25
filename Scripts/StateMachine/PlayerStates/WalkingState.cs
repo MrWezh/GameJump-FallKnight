@@ -19,13 +19,8 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         }
         public override void Enter()
         {
-            GD.Print("Entered walk State");
-        if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasWalk");
-        else if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorWalk");
-        else if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("walk");
-        else _player.SetAnimation("walk");
-            
-
+            GD.Print("Entered walk State");         
+            _player.PlayAnimation("walk");
         }
 
         public override void Update(double delta)

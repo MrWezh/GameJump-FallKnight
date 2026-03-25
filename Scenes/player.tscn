@@ -12,13 +12,13 @@
 [ext_resource type="Script" uid="uid://cv0hdrp83y046" path="res://Scripts/StateMachine/PlayerStates/JumpingState.cs" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://ctjeqd7jovxs" path="res://Scripts/StateMachine/PlayerStates/FallingState.cs" id="7_gymyn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p1odr"]
-atlas = ExtResource("5_tx1dd")
-region = Rect2(0, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gysh"]
 atlas = ExtResource("5_tx1dd")
 region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1odr"]
+atlas = ExtResource("5_tx1dd")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfarp"]
 atlas = ExtResource("5_tx1dd")
@@ -42,12 +42,9 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y6uwr"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p1odr")
-}],
+"frames": [],
 "loop": true,
-"name": &"Idle",
+"name": &"die",
 "speed": 5.0
 }, {
 "frames": [{
@@ -56,6 +53,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1odr")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -71,7 +76,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_y6uwr")
 }],
 "loop": true,
-"name": &"pre-jumo",
+"name": &"pre-jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -85,8 +90,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_xuaoq")
 }],
 "loop": true,
-"name": &"wlak",
-"speed": 10.0
+"name": &"walk",
+"speed": 15.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_36dho"]
@@ -168,7 +173,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_36dho")
 }],
 "loop": true,
-"name": &"ArmorDie",
+"name": &"armor-die",
 "speed": 5.0
 }, {
 "frames": [{
@@ -176,7 +181,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qqcod")
 }],
 "loop": true,
-"name": &"ArmorFall",
+"name": &"armor-fall",
 "speed": 5.0
 }, {
 "frames": [{
@@ -184,7 +189,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_igrcy")
 }],
 "loop": true,
-"name": &"ArmorHit",
+"name": &"armor-hit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -192,7 +197,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_fs7ks")
 }],
 "loop": true,
-"name": &"ArmorIdle",
+"name": &"armor-idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -200,7 +205,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_l6n3p")
 }],
 "loop": true,
-"name": &"ArmorJump",
+"name": &"armor-jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -208,7 +213,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_olqyp")
 }],
 "loop": true,
-"name": &"ArmorPre-jump",
+"name": &"armor-pre-jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -222,8 +227,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_2ijsl")
 }],
 "loop": true,
-"name": &"ArmorWalk",
-"speed": 5.0
+"name": &"armor-walk",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -285,33 +290,35 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 15.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(73, 74)
 
-[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer")]
+[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_umbrella", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer")]
 input_pickable = true
 script = ExtResource("1_cvnsp")
 _collision = NodePath("Collision")
 _animatedSprite = NodePath("Sprite")
+_umbrella = NodePath("Paraguas")
 _healthBar = NodePath("HealthBar")
 _armorBar = NodePath("ArmorBar")
 _featherFallBar = NodePath("FeatherFallBar")
 _featherFallTimer = NodePath("FeatherFallTimer")
 
 [node name="Paraguas" type="AnimatedSprite2D" parent="." unique_id=198428296]
+visible = false
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_y6uwr")
-animation = &"wlak"
+animation = &"walk"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1891815826]
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"idle"
+animation = &"walk"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
 position = Vector2(-5.5, 10)

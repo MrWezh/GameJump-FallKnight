@@ -21,10 +21,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         _player.Velocity = Vector2.Zero; 
         _player.SetHit();
         GD.Print("Entered Idle State");
-        if(_player.GetFeatherFallActive()) _player.SetAnimation("ParaguasIdle");
-        if(_player.GetArmorBarVisibility())  _player.SetAnimation("ArmorIdle");
-        if(_player.GetFeatherFallActive() && !_player.GetArmorBarVisibility()) _player.SetAnimation("idle");
-        else _player.SetAnimation("idle");
+        _player.PlayAnimation("idle");
          _player.fallDamage();
     }
     public override void Update(double delta)

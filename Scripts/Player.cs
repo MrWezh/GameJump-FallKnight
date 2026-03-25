@@ -26,10 +26,12 @@ namespace FallKnight.Scripts.PlayerScript
 		private bool _charging = false;
 		[Export] private CollisionShape2D _collision;
 		[Export] private AnimatedSprite2D _animatedSprite;
+		[Export] private AnimatedSprite2D _umbrella;
 		[Export] private ProgressBar _healthBar;
 		[Export] private ProgressBar _armorBar;
 		[Export] private ProgressBar _featherFallBar;
 		[Export] private Timer _featherFallTimer;
+
 
 		public PowerUps _powerUp;
 
@@ -117,7 +119,7 @@ namespace FallKnight.Scripts.PlayerScript
 		[Signal] public delegate void playerDeadEventHandler();
 		public override void _Ready()
 		{
-		
+			_umbrella.Visible = false;
 		}
 
 		public void SetAnimation(string animationName)
@@ -126,6 +128,21 @@ namespace FallKnight.Scripts.PlayerScript
 				_animatedSprite = GetNode<AnimatedSprite2D>("Sprite");
 			_animatedSprite.Play(animationName);
 		}
+
+		public void ActiveUmbrella(String animation)
+        {
+			_umbrella.Visible = true;
+            if(_umbrella == null)
+				_umbrella = GetNode<AnimatedSprite2D>("Paraguas");
+			_umbrella.Play(animation);
+        }
+
+		public void PlayAnimation(string state)
+        {
+        if(GetArmorBarVisibility())  SetAnimation("armor"+"-"+state);
+        else SetAnimation(state);
+        if(GetFeatherFallActive()) ActiveUmbrella(state);
+        }
 
         public override void _Process(double delta)
         {
@@ -160,8 +177,7 @@ namespace FallKnight.Scripts.PlayerScript
 				}
 				else
 				{
-        			if(GetArmorBarVisibility()) SetAnimation("ArmorHit");
-        			else SetAnimation("hit");
+        			PlayAnimation("hit");
 					vel = vel.Bounce(normal);
 				}
 			}
@@ -184,12 +200,10 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UsePotion()
 		{
-            if (IsOnFloor())
-            {
             _health += 100;
 			if (_health > 100) _health = 100;
 			_healthBar.Value = _health;
-            }
+            
 			
 		}
 
@@ -212,6 +226,7 @@ public void UseFeatherFall()
 	  public void onFeatherFallTtimeout()
         {
 			_featherFallBar.Visible = false;
+			_umbrella.Visible = false;
            PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 980.0f);
 		   _featherFallTimer.Stop();
 		   _featherFallActive = false;
@@ -240,9 +255,7 @@ public void UseFeatherFall()
 				{
 					_health -= damage;
 				}
-					if(GetFeatherFallActive()) SetAnimation("ParaguasDie");
-        			else if(GetArmorBarVisibility()) SetAnimation("ArmorDie");
-        			else SetAnimation("die");
+					PlayAnimation("die");
 			}
 			if (_health < 0)
 				{
