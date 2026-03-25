@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bso218sododi4"
-path="res://.godot/imported/peche.png-c8f01411a87d7657370b0f58ba03d9de.ctex"
+uid="uid://whfvv22pey8f"
+path="res://.godot/imported/ProtaSpriteSheet.png-80e7d7b6f696ed8492eeb02daae52103.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/peche.png"
-dest_files=["res://.godot/imported/peche.png-c8f01411a87d7657370b0f58ba03d9de.ctex"]
+source_file="res://Assets/MainCharacter/ProtaSpriteSheet.png"
+dest_files=["res://.godot/imported/ProtaSpriteSheet.png-80e7d7b6f696ed8492eeb02daae52103.ctex"]
 
 [params]
 

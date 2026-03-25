@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://4o21rc3nhbng"]
 
 [ext_resource type="Script" uid="uid://m716wtgx0ww4" path="res://Scripts/PowerUps.cs" id="1_p3i06"]
-[ext_resource type="Texture2D" uid="uid://ctp351n54tacv" path="res://Assets/PowerUp.png" id="1_psa43"]
+[ext_resource type="Texture2D" uid="uid://ctp351n54tacv" path="res://Assets/PowerUps/PowerUp.png" id="1_psa43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eewhk"]
 size = Vector2(46, 48)

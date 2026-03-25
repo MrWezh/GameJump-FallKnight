@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnbecog8no8b"
-path="res://.godot/imported/paraguas.png-32ced679cb726e95b6c3780eb4791a15.ctex"
+uid="uid://vxauue3ahrxw"
+path="res://.godot/imported/Poti.png-a48a962417bbe70995c4fd33849727a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/paraguas.png"
-dest_files=["res://.godot/imported/paraguas.png-32ced679cb726e95b6c3780eb4791a15.ctex"]
+source_file="res://Assets/PowerUps/Poti.png"
+dest_files=["res://.godot/imported/Poti.png-a48a962417bbe70995c4fd33849727a8.ctex"]
 
 [params]
 

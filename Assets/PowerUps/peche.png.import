@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cis6sdylylv2k"
-path="res://.godot/imported/FondoTMP.png-ea28888ec079491d33aefa90fcc8dce8.ctex"
+uid="uid://bso218sododi4"
+path="res://.godot/imported/peche.png-1dacf47debf694184de5314ea7a29787.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/FondoTMP.png"
-dest_files=["res://.godot/imported/FondoTMP.png-ea28888ec079491d33aefa90fcc8dce8.ctex"]
+source_file="res://Assets/PowerUps/peche.png"
+dest_files=["res://.godot/imported/peche.png-1dacf47debf694184de5314ea7a29787.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgbks0dcc5wqa"
-path="res://.godot/imported/ProtaParaguasSpriteSheet.png-13971d0f59a795c8d92d9e04bdc9bbff.ctex"
+uid="uid://ctp351n54tacv"
+path="res://.godot/imported/PowerUp.png-9954c4f26d2a1306c6df2b0b3c33e6bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ProtaParaguasSpriteSheet.png"
-dest_files=["res://.godot/imported/ProtaParaguasSpriteSheet.png-13971d0f59a795c8d92d9e04bdc9bbff.ctex"]
+source_file="res://Assets/PowerUps/PowerUp.png"
+dest_files=["res://.godot/imported/PowerUp.png-9954c4f26d2a1306c6df2b0b3c33e6bb.ctex"]
 
 [params]
 
