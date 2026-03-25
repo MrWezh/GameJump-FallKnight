@@ -13,13 +13,13 @@ namespace FallKnight.Scripts.PlayerScript
 		public int _health = 100;
 		public int _armor = 0;
 		public bool _featherFallActive = false;
-		private const float Speed = 160.0f;
-		private float JumpVelocity = -50.0f;
-		private const float weight = 50f;
-		private const float MinJumpVelocity = -50.0f;
-		private const float MaxJumpVelocity = -600.0f;
-		private const float ChargeRate = 1000.0f;
+		private const float _speed = 160.0f;
+		private float _jumpVelocity = -50.0f;
+		private const float _minJumpVelocity = -50.0f;
+		private const float _maxJumpVelocity = -600.0f;
+		private const float _chargeRate = 1000.0f;
 		private bool _hit = false;
+		private bool _playerCollidingWall;
 		//Capturar las posiciones al caer para calcular el daño de caida
 		private float _initHeight;
 		private float _finalHeight;
@@ -48,38 +48,32 @@ namespace FallKnight.Scripts.PlayerScript
 		}
 		public float GetMinJumpVelocity()
 		{
-			return MinJumpVelocity;
+			return _minJumpVelocity;
 		}
 
 		public float GetMaxJumpVelocity()
 		{
-			return MaxJumpVelocity;
+			return _maxJumpVelocity;
 		}
 		public float GetChargeRate()
 		{
-			return ChargeRate;
+			return _chargeRate;
 		}
 
 		public float GetSpeed()
 		{
-			return Speed;
+			return _speed;
 		}
 
 		public float GetJumpVelocity()
 		{
-			return JumpVelocity;
+			return _jumpVelocity;
 		}
 
 		public void SetJumpVelocity(float a)
 		{
-			JumpVelocity = a;
+			_jumpVelocity = a;
 		}
-
-		public float GetWeight()
-		{
-			return weight;
-		}
-
 		public bool GetHit()
 		{
 			return _hit;
@@ -114,6 +108,16 @@ namespace FallKnight.Scripts.PlayerScript
 		public bool GetArmorBarVisibility()
         {
             return _armorBar.Visible;
+        }
+
+		public void SetPlayerCollidingWall(bool a)
+        {
+            _playerCollidingWall = a;
+        }
+
+		public bool GetPlayerCollidingWall()
+        {
+            return _playerCollidingWall;
         }
 
 		[Signal] public delegate void playerDeadEventHandler();
@@ -179,6 +183,11 @@ namespace FallKnight.Scripts.PlayerScript
 				{
         			PlayAnimation("hit");
 					vel = vel.Bounce(normal);
+                    if (normal.Y == 0&&IsOnFloor())
+                    {
+                        _playerCollidingWall = true;
+						GD.Print("pared");
+                    }
 				}
 			}
 

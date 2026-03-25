@@ -56,10 +56,18 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         float direction = Input.GetAxis("move_left", "move_right");
         if (direction != 0.0f)
         {
+
+           if (_player.GetPlayerCollidingWall())
+                {
+                    GD.Print(direction, " ", _player.GetSpeed());
+                    direction *= -1;
+                    _player.SetPlayerCollidingWall(false);
+                }
            velocity.X = direction * _player.GetSpeed();
+           
         }
             _player.PlayAnimation("jump");        
-             velocity.Y += _player.GetJumpVelocity();
+             velocity.Y += _player.GetJumpVelocity();    
             _player.SetCharging();
         }
         velocity += new Vector2(0,980.0f) * (float)delta;

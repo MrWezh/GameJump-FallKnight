@@ -40,7 +40,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         public override void UpdatePhysics(double delta)
         {
 
-
+            
             float direction = Input.GetAxis("move_left", "move_right");
             if (direction != 0.0f)
             {

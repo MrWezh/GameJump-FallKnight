@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b87jo0iujplsf"]
+
+[node name="PausedMenu" type="CanvasLayer" unique_id=1921402557]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1476948092]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3372549)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1385599129]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -55.0
+offset_right = 250.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="Reset" type="Button" parent="VBoxContainer" unique_id=1919151190]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "RESET"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=521519461]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "EXIT
+"

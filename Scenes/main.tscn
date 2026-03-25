@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://1escpa8exs4u" path="res://Scenes/game_over.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://bayofhfujdlje" path="res://Scenes/victory.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://4o21rc3nhbng" path="res://Scenes/power_up.tscn" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://b87jo0iujplsf" path="res://Scenes/paused_menu.tscn" id="8_344ge"]
 
-[node name="Main" type="Node" unique_id=578939692 node_paths=PackedStringArray("_gameOverMensage", "_victoryMensage", "_player", "_princess", "_timer")]
+[node name="Main" type="Node" unique_id=578939692 node_paths=PackedStringArray("_gameOverMensage", "_victoryMensage", "_player", "_princess")]
 script = ExtResource("1_jjvhh")
 _gameOverMensage = NodePath("GameOver")
 _victoryMensage = NodePath("Victory")
 _player = NodePath("Player")
 _princess = NodePath("Princess")
-_timer = NodePath("GameOver/Timer")
 
 [node name="MAP" parent="." unique_id=313938413 instance=ExtResource("3_21xkr")]
 scale = Vector2(3, 3)
@@ -24,7 +24,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAEAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAE
 position = Vector2(1824, 9120)
 
 [node name="Player" parent="." unique_id=657798253 instance=ExtResource("2_jjvhh")]
-position = Vector2(1112, 624)
+position = Vector2(1384, 632)
 
 [node name="MAP2" parent="." unique_id=12285153 instance=ExtResource("3_21xkr")]
 scale = Vector2(3, 3)
@@ -62,5 +62,8 @@ position = Vector2(1120, 8600)
 [node name="PowerUp5" parent="PowerUps" unique_id=899554673 instance=ExtResource("7_6bp64")]
 position = Vector2(1064, 4456)
 PowerUpType = 1
+
+[node name="PausedMenu" parent="." unique_id=1921402557 instance=ExtResource("8_344ge")]
+visible = false
 
 [connection signal="timeout" from="GameOver/Timer" to="." method="onTimerTimeout"]
