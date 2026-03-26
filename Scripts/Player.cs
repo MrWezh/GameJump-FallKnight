@@ -32,7 +32,14 @@ namespace FallKnight.Scripts.PlayerScript
 		[Export] private ProgressBar _featherFallBar;
 		[Export] private Timer _featherFallTimer;
 
-
+		[ExportGroup("Audios")]
+		[Export] public AudioStreamPlayer2D _dieAudio;
+		[Export] public AudioStreamPlayer2D _hitAudio;
+		[Export] public AudioStreamPlayer2D _jumpAudio;
+		[Export] public AudioStreamPlayer2D _pickupAudio;
+		[Export] public AudioStreamPlayer2D _backRoundAudio;
+		[Export] public AudioStreamPlayer2D _gameOverAudio;
+		[Export] public AudioStreamPlayer2D _victoryAudio;
 		public PowerUps _powerUp;
 
 		StateMachine _stateMachine;
@@ -182,6 +189,7 @@ namespace FallKnight.Scripts.PlayerScript
 				}
 				else
 				{
+					_hitAudio.Play();
         			PlayAnimation("hit");
 					vel = vel.Bounce(normal);
                     if (normal.Y == 0&&IsOnFloor())
@@ -210,6 +218,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UsePotion()
 		{
+			_pickupAudio.Play();
             _health += 100;
 			if (_health > 100) _health = 100;
 			_healthBar.Value = _health;
@@ -219,6 +228,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 		public void UseArmor()
 		{
+			_pickupAudio.Play();
 			ArmorVisibility();
 			_armor += 100;
 			if (_armor > 100) _armor = 100;
@@ -227,6 +237,7 @@ namespace FallKnight.Scripts.PlayerScript
 
 public void UseFeatherFall()
        {
+		_pickupAudio.Play();
 			_featherFallBar.Visible = true;
            _featherFallActive = true;
            PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 200f);
@@ -266,6 +277,7 @@ public void UseFeatherFall()
 					_health -= damage;
 				}
 					PlayAnimation("die");
+					_dieAudio.Play();
 			}
 			if (_health < 0)
 				{

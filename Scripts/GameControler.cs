@@ -10,9 +10,11 @@ public partial class GameControler :Node
 	[Export] private Player _player;
 	[Export] private Princess _princess;
 	[Export] private Timer _timer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 		{
+			_player._backRoundAudio.Play();
 			_player.playerDead += gameFinish;
 			_princess.playerWin += gameFinish;
 			_gameFinishMensage.Visible = false;
@@ -36,8 +38,8 @@ public partial class GameControler :Node
 
 	private void gameFinish(string arg)
 	{
-			GetTree().Paused = true;
 			_gameFinishMensage.Visible = true;
+			_player._backRoundAudio.Stop();
 			switch (arg)
 			{
 				case "player_dead":
@@ -53,7 +55,10 @@ public partial class GameControler :Node
 				GD.Print("Error: argument Invalid");
 				break;
 			}
-			_timer.Start();
+
+				_player.GetTree().Paused = true;
+				_timer.Start();
+            
 	}
 	private void onTimerTimeout()
 		{

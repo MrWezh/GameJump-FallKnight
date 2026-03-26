@@ -52,6 +52,7 @@ namespace FallKnight.Scripts.StateMachines.PlayerStates
         if (_player.GetCharging() && Input.IsActionJustReleased("jump") 
         ||(_player.GetJumpVelocity() == _player.GetMaxJumpVelocity() && _player.GetCharging())) 
         {
+        _player._jumpAudio.Play();
         _player.SetAnimation("jump");
         float direction = Input.GetAxis("move_left", "move_right");
         if (direction != 0.0f)

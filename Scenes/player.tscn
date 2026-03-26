@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dgbks0dcc5wqa" path="res://Assets/MainCharacter/ProtaParaguasSin.png" id="5_tx1dd"]
 [ext_resource type="Script" uid="uid://cv0hdrp83y046" path="res://Scripts/StateMachine/PlayerStates/JumpingState.cs" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://ctjeqd7jovxs" path="res://Scripts/StateMachine/PlayerStates/FallingState.cs" id="7_gymyn"]
+[ext_resource type="AudioStream" uid="uid://cvg1ul5dhfhb1" path="res://Assets/Audios/Dies.mp3" id="12_h4iuc"]
+[ext_resource type="AudioStream" uid="uid://dfnpfq2oa1vp3" path="res://Assets/Audios/Hit.mp3" id="13_fd4e3"]
+[ext_resource type="AudioStream" uid="uid://cgqt7k8m7xx2b" path="res://Assets/Audios/Jump.mp3" id="14_qqcod"]
+[ext_resource type="AudioStream" uid="uid://b8kvndyn0k02x" path="res://Assets/Audios/Pickup.mp3" id="15_igrcy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gysh"]
 atlas = ExtResource("5_tx1dd")
@@ -296,7 +300,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(73, 74)
 
-[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_umbrella", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer")]
+[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_umbrella", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer", "_dieAudio", "_hitAudio", "_jumpAudio", "_pickupAudio")]
 input_pickable = true
 script = ExtResource("1_cvnsp")
 _collision = NodePath("Collision")
@@ -306,6 +310,10 @@ _healthBar = NodePath("HealthBar")
 _armorBar = NodePath("ArmorBar")
 _featherFallBar = NodePath("FeatherFallBar")
 _featherFallTimer = NodePath("FeatherFallTimer")
+_dieAudio = NodePath("Audios/Die")
+_hitAudio = NodePath("Audios/Hit")
+_jumpAudio = NodePath("Audios/Jump")
+_pickupAudio = NodePath("Audios/Pickup")
 
 [node name="Paraguas" type="AnimatedSprite2D" parent="." unique_id=198428296]
 visible = false
@@ -386,6 +394,20 @@ max_value = 8.0
 step = 1.0
 value = 8.0
 show_percentage = false
+
+[node name="Audios" type="Node2D" parent="." unique_id=1577900612]
+
+[node name="Die" type="AudioStreamPlayer2D" parent="Audios" unique_id=1638191493]
+stream = ExtResource("12_h4iuc")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="Audios" unique_id=130384034]
+stream = ExtResource("13_fd4e3")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Audios" unique_id=1081787585]
+stream = ExtResource("14_qqcod")
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="Audios" unique_id=1982833207]
+stream = ExtResource("15_igrcy")
 
 [connection signal="input_event" from="." to="." method="onCollisionInputEvent"]
 [connection signal="timeout" from="FeatherFallTimer" to="." method="onFeatherFallTtimeout"]
