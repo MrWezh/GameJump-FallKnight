@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://4blf7n2vqoyc"]
+
+[ext_resource type="Texture2D" uid="uid://bjcyvsw6bhqgt" path="res://Assets/Portada.png" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://omlycdekl1bj" path="res://Scripts/Menu.cs" id="1_xhh6f"]
+
+[node name="Menu" type="Control" unique_id=1018175879]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhh6f")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1796679326]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 495.1427
+offset_bottom = 277.71423
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_1rerr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1219293578]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -23.5
+offset_right = 250.0
+offset_bottom = 103.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=1138449631]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "START
+"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1178443396]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "EXIT
+"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="onStartPressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="onExitPressed"]

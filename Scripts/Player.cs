@@ -120,7 +120,7 @@ namespace FallKnight.Scripts.PlayerScript
             return _playerCollidingWall;
         }
 
-		[Signal] public delegate void playerDeadEventHandler();
+		[Signal] public delegate void playerDeadEventHandler(string arg);
 		public override void _Ready()
 		{
 			_umbrella.Visible = false;
@@ -269,7 +269,7 @@ public void UseFeatherFall()
 			}
 			if (_health < 0)
 				{
-					EmitSignal(SignalName.playerDead);
+					EmitSignal(SignalName.playerDead, "player_dead");
 				}
 			_armorBar.Value = _armor;
 			ArmorVisibility();

@@ -318,7 +318,7 @@ animation = &"walk"
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_vgqql")
-animation = &"walk"
+animation = &"jump"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1226117769]
 position = Vector2(-5.5, 10)
@@ -350,7 +350,6 @@ process_callback = 0
 wait_time = 8.0
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=316556182]
-z_index = 1
 texture_filter = 1
 offset_left = -43.0
 offset_top = 49.0
@@ -363,7 +362,6 @@ show_percentage = false
 
 [node name="ArmorBar" type="ProgressBar" parent="." unique_id=33755168]
 visible = false
-z_index = 1
 texture_filter = 1
 offset_left = -43.0
 offset_top = 59.0

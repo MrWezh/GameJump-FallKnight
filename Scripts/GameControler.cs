@@ -6,17 +6,16 @@ namespace FallKnight.Scripts.GameControlerScript
 {
 public partial class GameControler :Node
 {
-	[Export] private CanvasLayer _gameOverMensage;
-	[Export] private CanvasLayer _victoryMensage;
+	[Export] private CanvasLayer _gameFinishMensage;
 	[Export] private Player _player;
 	[Export] private Princess _princess;
 	[Export] private Timer _timer;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 		{
-			_player.playerDead += playerDead;
-			_princess.playerWin += playerWin;
-			_gameOverMensage.Visible = false;
+			_player.playerDead += gameFinish;
+			_princess.playerWin += gameFinish;
+			_gameFinishMensage.Visible = false;
 			GetTree().Paused = false;
            PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 980.0f);
 
@@ -35,25 +34,31 @@ public partial class GameControler :Node
 	
         }
 
-	private void playerDead()
+	private void gameFinish(string arg)
 	{
 			GetTree().Paused = true;
-			_gameOverMensage.Visible = true;
+			_gameFinishMensage.Visible = true;
+			switch (arg)
+			{
+				case "player_dead":
+					_gameFinishMensage.GetNode<Label>("Lose").Visible=true;
+					_gameFinishMensage.GetNode<Label>("Win").Visible=false;
+
+				break;
+				case "player_win":
+					_gameFinishMensage.GetNode<Label>("Win").Visible=true;
+					_gameFinishMensage.GetNode<Label>("Lose").Visible=false;
+				break;
+				default:
+				GD.Print("Error: argument Invalid");
+				break;
+			}
 			_timer.Start();
 	}
-
-	public void playerWin()
-	{
-			if(!GetTree().Paused)GetTree().Paused = true;
-			_victoryMensage.Visible = true;
-			_timer.Start();
-	}
-
 	private void onTimerTimeout()
 		{
-			GD.Print("Timer out");
 			_timer.Stop();
-			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/main.tscn");
+			GetTree().ReloadCurrentScene();
 		}
 }
 }

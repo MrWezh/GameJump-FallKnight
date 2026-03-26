@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://1escpa8exs4u"]
 
-[node name="GameOver" type="CanvasLayer" unique_id=646237811]
+[node name="GameFinish" type="CanvasLayer" unique_id=646237811]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1236815902]
 anchors_preset = 15
@@ -10,7 +10,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.3372549)
 
-[node name="Label" type="Label" parent="." unique_id=1249626429]
+[node name="Lose" type="Label" parent="." unique_id=1249626429]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -25,3 +25,20 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.6751647, 0.06394067, 9.62615e-08, 1)
 theme_override_font_sizes/font_size = 100
 text = "YOU DIED"
+
+[node name="Win" type="Label" parent="." unique_id=2049895622]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8471937, 0.51900953, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "YOU WIN"
