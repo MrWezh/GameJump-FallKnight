@@ -20,6 +20,9 @@ public partial class GameControler :Node
 			GetTree().Paused = false;
            PhysicsServer2D.AreaSetParam(GetViewport().FindWorld2D().Space, PhysicsServer2D.AreaParameter.Gravity, 980.0f);
 
+		   if(_timer == null)
+		   	_timer = GetNode<Timer>("GamePausedTimer");
+
 		}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,18 +30,21 @@ public partial class GameControler :Node
 	{
 	}
 
+        public override void _Input(InputEvent @event)
+        {
+	
+        }
+
 	private void playerDead()
 	{
 			GetTree().Paused = true;
 			_gameOverMensage.Visible = true;
 			_timer.Start();
-			GD.Print();
-			 
 	}
 
 	public void playerWin()
 	{
-			GetTree().Paused = true;
+			if(!GetTree().Paused)GetTree().Paused = true;
 			_victoryMensage.Visible = true;
 			_timer.Start();
 	}

@@ -178,6 +178,7 @@ namespace FallKnight.Scripts.PlayerScript
 				if (normal == new Vector2(0, -1))
 				{
 					vel = Velocity;
+					_playerCollidingWall = false;
 				}
 				else
 				{
@@ -252,7 +253,7 @@ public void UseFeatherFall()
 			GD.Print(damage);
 			GD.Print(GetGravity());
 
-				if (_armor > 0)
+				if (GetArmorBarVisibility())
 				{	
 					_armor -= damage;
 					if (_armor < 0) {
