@@ -300,7 +300,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
 size = Vector2(73, 74)
 
-[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_umbrella", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer", "_dieAudio", "_hitAudio", "_jumpAudio", "_pickupAudio")]
+[node name="Player" type="CharacterBody2D" unique_id=657798253 node_paths=PackedStringArray("_collision", "_animatedSprite", "_umbrella", "_healthBar", "_armorBar", "_featherFallBar", "_featherFallTimer", "_dieAudio", "_hitAudio", "_jumpAudio", "_pickupAudio", "_backRoundAudio", "_gameOverAudio")]
 input_pickable = true
 script = ExtResource("1_cvnsp")
 _collision = NodePath("Collision")
@@ -314,6 +314,8 @@ _dieAudio = NodePath("Audios/Die")
 _hitAudio = NodePath("Audios/Hit")
 _jumpAudio = NodePath("Audios/Jump")
 _pickupAudio = NodePath("Audios/Pickup")
+_backRoundAudio = NodePath("")
+_gameOverAudio = NodePath("")
 
 [node name="Paraguas" type="AnimatedSprite2D" parent="." unique_id=198428296]
 visible = false

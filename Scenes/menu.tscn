@@ -2,6 +2,26 @@
 
 [ext_resource type="Texture2D" uid="uid://bjcyvsw6bhqgt" path="res://Assets/Portada.png" id="1_1rerr"]
 [ext_resource type="Script" uid="uid://omlycdekl1bj" path="res://Scripts/Menu.cs" id="1_xhh6f"]
+[ext_resource type="FontFile" uid="uid://cmrdblwjbbfey" path="res://Assets/ButtonsThemes/gothik_steel/Gothik Steel.ttf" id="3_cayip"]
+[ext_resource type="Texture2D" uid="uid://iblnja4osb0s" path="res://Assets/ButtonsThemes/buttonTheme.png" id="4_158mb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wwsa2"]
+texture = ExtResource("4_158mb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsrd8"]
+texture = ExtResource("4_158mb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6swd7"]
+texture = ExtResource("4_158mb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wbdvm"]
+texture = ExtResource("4_158mb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3rjx"]
+texture = ExtResource("4_158mb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_158mb"]
+texture = ExtResource("4_158mb")
 
 [node name="Menu" type="Control" unique_id=1018175879]
 layout_mode = 3
@@ -32,10 +52,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -23.5
-offset_right = 250.0
-offset_bottom = 103.5
+offset_left = -125.0
+offset_top = 26.0
+offset_right = 125.0
+offset_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 21
@@ -43,14 +63,32 @@ theme_override_constants/separation = 21
 [node name="Start" type="Button" parent="VBoxContainer" unique_id=1138449631]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_cayip")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_wwsa2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jsrd8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6swd7")
 text = "START
 "
 
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=1178443396]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_cayip")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_wbdvm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q3rjx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_158mb")
 text = "EXIT
 "
 

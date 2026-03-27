@@ -37,9 +37,7 @@ namespace FallKnight.Scripts.PlayerScript
 		[Export] public AudioStreamPlayer2D _hitAudio;
 		[Export] public AudioStreamPlayer2D _jumpAudio;
 		[Export] public AudioStreamPlayer2D _pickupAudio;
-		[Export] public AudioStreamPlayer2D _backRoundAudio;
-		[Export] public AudioStreamPlayer2D _gameOverAudio;
-		[Export] public AudioStreamPlayer2D _victoryAudio;
+	
 		public PowerUps _powerUp;
 
 		StateMachine _stateMachine;
@@ -132,6 +130,7 @@ namespace FallKnight.Scripts.PlayerScript
 		{
 			_umbrella.Visible = false;
 		}
+
 
 		public void SetAnimation(string animationName)
 		{

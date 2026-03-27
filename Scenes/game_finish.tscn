@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://1escpa8exs4u"]
 
+[ext_resource type="AudioStream" uid="uid://c2dydffqjqad4" path="res://Assets/Audios/GameOver.mp3" id="1_16tp3"]
+[ext_resource type="AudioStream" uid="uid://k7pq18sjx2fq" path="res://Assets/Audios/Victory.mp3" id="2_c7pai"]
+
 [node name="GameFinish" type="CanvasLayer" unique_id=646237811]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1236815902]
@@ -11,6 +14,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.3372549)
 
 [node name="Lose" type="Label" parent="." unique_id=1249626429]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -42,3 +46,10 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.8471937, 0.51900953, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "YOU WIN"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=1843846208]
+stream = ExtResource("1_16tp3")
+parameters/looping = true
+
+[node name="Victory" type="AudioStreamPlayer" parent="." unique_id=1843118769]
+stream = ExtResource("2_c7pai")

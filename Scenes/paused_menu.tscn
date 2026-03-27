@@ -1,6 +1,43 @@
 [gd_scene format=3 uid="uid://b87jo0iujplsf"]
 
 [ext_resource type="Script" uid="uid://k2i4d2w27gsc" path="res://Scripts/PausedMenu.cs" id="1_qxfps"]
+[ext_resource type="Texture2D" uid="uid://iblnja4osb0s" path="res://Assets/ButtonsThemes/buttonTheme.png" id="2_8da32"]
+[ext_resource type="FontFile" uid="uid://cmrdblwjbbfey" path="res://Assets/ButtonsThemes/gothik_steel/Gothik Steel.ttf" id="2_l2rry"]
+
+[sub_resource type="Theme" id="Theme_l2rry"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_npcx0"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_osgyb"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gao4x"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rlrhf"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8mj5x"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dmf0p"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yh68n"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8da32"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l2rry"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vtund"]
+texture = ExtResource("2_8da32")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yj34p"]
+texture = ExtResource("2_8da32")
 
 [node name="PausedMenu" type="CanvasLayer" unique_id=1921402557]
 script = ExtResource("1_qxfps")
@@ -19,26 +56,84 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -55.0
-offset_right = 250.0
-offset_bottom = 55.0
+offset_left = -160.5
+offset_top = -150.0
+offset_right = 160.5
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 21
+
+[node name="Continue" type="Button" parent="VBoxContainer" unique_id=902010500]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_l2rry")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l2rry")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_npcx0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_osgyb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gao4x")
+text = "CONTINUE
+"
 
 [node name="Reset" type="Button" parent="VBoxContainer" unique_id=1919151190]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
+theme = SubResource("Theme_l2rry")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l2rry")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_npcx0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rlrhf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gao4x")
 text = "RESET"
 
 [node name="Exit" type="Button" parent="VBoxContainer" unique_id=521519461]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l2rry")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_8mj5x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dmf0p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_yh68n")
 text = "EXIT
 "
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=812020246]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer" unique_id=1166051590]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_l2rry")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_8da32")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_l2rry")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vtund")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_yj34p")
+text = "Stop backround audio
+"
+
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="onContinuePressed"]
 [connection signal="pressed" from="VBoxContainer/Reset" to="." method="onResetPressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="onExitPressed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/CheckBox" to="." method="onCheckBoxToggled"]
