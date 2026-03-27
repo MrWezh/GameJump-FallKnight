@@ -6,6 +6,7 @@ namespace FallKnight.Scripts.GameControlerScript
 {
 public partial class GameControler :Node
 {
+	public Tween _tween;
 	[Export] private CanvasLayer _gameFinishMensage;
 	[Export] private Player _player;
 	[Export] private Princess _princess;
@@ -15,7 +16,9 @@ public partial class GameControler :Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 		{
-			_backgoundAudio.Play();
+			_tween = GetTree().CreateTween();
+			_backgoundAudio.VolumeDb = -50.0f;
+			_tween.TweenProperty(_backgoundAudio, "volume_db", -15.0f, 1.0f).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.In);
 			_player.playerDead += gameFinish;
 			_princess.playerWin += gameFinish;
 			_gameFinishMensage.Visible = false;
@@ -66,5 +69,11 @@ public partial class GameControler :Node
 			_timer.Stop();
 			GetTree().ReloadCurrentScene();
 		}
+        public override void _ExitTree()
+        {
+            _player.playerDead -= gameFinish;
+			_princess.playerWin -= gameFinish;
+        }
 }
+
 }
