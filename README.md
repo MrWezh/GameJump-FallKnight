@@ -1,1 +1,1 @@
-Este proyecto es un mini-juego creado para un _Game Jam_ que se organizó en el instituto Puig Castellar en el curso de desarrollo de videojuegos.
+Este proyecto es un mini-juego creado para un _Game Jam_ que se organizó en el instituto Puig Castellar en el curso de desarrollo de videojuegos. En este caso, la temática del _Jam_ es _todo lo que sube baja._
